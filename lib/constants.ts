@@ -64,6 +64,12 @@ export const VIDEOS = {
   },
 } as const;
 
+// ─── Site URL (used for absolute OG / social images) ──────────────────────────
+// Cambia esto por tu dominio real cuando despliegues (ej. "https://wiainnercircle.com").
+// En Vercel se sobreescribe con la variable de entorno NEXT_PUBLIC_SITE_URL.
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://wiainnercircle.vercel.app";
+
 // ─── Favicons (all in /public/) ───────────────────────────────────────────────
 export const FAVICONS = {
   svg:   "/wia-inner-circle-favicon.svg",

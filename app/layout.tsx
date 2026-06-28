@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { ANALYTICS, FAVICONS } from "@/lib/constants";
+import { ANALYTICS, FAVICONS, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "WIA Inner Circle — Tu Siguiente Nivel Empieza Aquí",
   description:
     "Comunidad privada de élite para emprendedores y traders que buscan escalar negocios, dominar el trading con Order Flow institucional y construir libertad financiera real. Solicita acceso.",
