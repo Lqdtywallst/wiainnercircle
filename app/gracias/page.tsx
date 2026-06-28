@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import ThankYou from "@/components/ThankYou";
+
+export const metadata: Metadata = {
+  title: "Solicitud recibida — WIA Inner Circle",
+  description:
+    "Tu aplicación al WIA Inner Circle está en revisión. Si encajas, te contactamos en menos de 48 horas.",
+  robots: { index: false, follow: false },
+};
+
+export default function GraciasPage() {
+  return (
+    <main>
+      <Nav />
+      <ThankYou />
+      <Footer />
+    </main>
+  );
+}

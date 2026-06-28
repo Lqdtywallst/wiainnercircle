@@ -1,0 +1,99 @@
+# WIA Inner Circle — Cursor Rules
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Project
+Landing page de captación de leads para la comunidad privada WIA Inner Circle
+(World Institutional Assets). Trading · Negocios · Inversiones · Mentalidad.
+Operado desde Dubai por Santiago.
+
+## Stack
+- Next.js 14 (App Router)
+- TypeScript (strict)
+- Tailwind CSS v3
+- Framer Motion v11
+- No backend yet — form logs to console, ready to wire
+
+## Brand
+- Background:  #050505  (almost black)
+- Primary CTA:  #D6FF00  (neon lime)
+- Typography:   Bebas Neue (headings) + Inter (body)
+- Tone:         Luxury · Minimal · Apple / Porsche aesthetic
+- Language:     Spanish (es)
+
+## File structure
+wia-inner-circle/
+├── app/
+│   ├── layout.tsx        ← metadata, viewport, font imports
+│   ├── page.tsx          ← assembles all sections in order
+│   └── globals.css       ← base styles + Tailwind @layer components
+├── components/
+│   ├── Nav.tsx           ← fixed nav, fades bg on scroll, desktop links
+│   ├── Hero.tsx          ← fullscreen split: copy left, photo right
+│   ├── Results.tsx       ← 2-col: Bookmap photo + copy + stats
+│   ├── Statement.tsx     ← fullscreen parallax: steering wheel photo
+│   ├── Gallery.tsx       ← 12-col desktop grid, 2-col mobile
+│   ├── Interstitial.tsx  ← 70vh parallax photo with caption
+│   ├── Form.tsx          ← lead capture form, controlled, success state
+│   └── Footer.tsx        ← minimal 3-col footer
+├── lib/
+│   ├── constants.ts      ← ALL copy, image paths, colors, form options
+│   └── motion.ts         ← shared Framer Motion variants (fadeUp, scaleIn…)
+└── public/images/        ← all photos as .jpeg files
+
+## Images (public/images/)
+- hero.jpeg            Santiago terraza Dubai Marina de pie
+- bookmap.jpeg         Bookmap Order Flow screen (Results section)
+- steering-wheel.jpeg  Lambo STO cockpit + Rolex (Statement section)
+- gwagon.jpeg          G-Wagon Onyx naranja (Gallery G1, large left)
+- urus.jpeg            Lamborghini Urus turquesa (Gallery G2, top right)
+- lambo-sto.jpeg       Lamborghini Huracán STO parking (Gallery G3)
+- desk-day.jpeg        Santiago desk vista Dubai día (Gallery G4)
+- lambo-day.jpeg       Lambo exterior día (Interstitial section)
+
+## Rules for Cursor
+1. NEVER recreate, edit, crop, or stylize photos.
+   Only move them between sections or change objectPosition.
+
+2. ALL copy and paths live in lib/constants.ts.
+   Edit copy there, not inside components.
+
+3. ALL Framer Motion variants live in lib/motion.ts.
+   Import from there; don't define inline variants.
+
+4. Use Tailwind utility classes as first choice.
+   Fall back to inline styles only for dynamic values (useTransform outputs).
+
+5. Shared CSS patterns (.btn-lime, .label, .input-field, .photo-frame, .section-pad)
+   are defined in globals.css @layer components. Use them.
+
+6. Animations:
+   - Entrance: fadeUp, scaleIn from lib/motion.ts
+   - Parallax: useScroll + useTransform (only in Statement, Interstitial)
+   - Nothing excessive — no bounce, no 3D, no color flashes
+
+7. When adding a new section:
+   a. Create component in /components/
+   b. Add image path to IMAGES in lib/constants.ts
+   c. Add copy to constants.ts
+   d. Import in app/page.tsx
+
+8. Form (Form.tsx):
+   - State is controlled (useState<FormData>)
+   - handleSubmit logs to console — wire to your API here
+   - TODO comment marks the integration point
+
+9. Responsive breakpoints (Tailwind):
+   - Desktop first
+   - max-md (< 768px): single column, reduced padding
+   - max-sm (< 640px): form rows collapse
+
+10. No gradients, no fake 3D, no AI art, no emojis in UI.
+    Keep it clean and premium.
+
+## Common tasks
+- Change hero photo:       update IMAGES.hero in lib/constants.ts
+- Change section copy:     edit the relevant constant in lib/constants.ts
+- Add a new gallery photo: add to IMAGES, update photos array in Gallery.tsx
+- Wire the form:           replace console.log in Form.tsx handleSubmit
+- Add a section:           new .tsx in /components, import in page.tsx
+- Change lime color:       update --lime in globals.css AND tailwind.config.ts

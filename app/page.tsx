@@ -1,0 +1,37 @@
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import Results from "@/components/Results";
+import ValueStack from "@/components/ValueStack";
+import Statement from "@/components/Statement";
+import Founder from "@/components/Founder";
+import Testimonials from "@/components/Testimonials";
+import Gallery from "@/components/Gallery";
+import Interstitial from "@/components/Interstitial";
+import FAQ from "@/components/FAQ";
+import Form from "@/components/Form";
+import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ExitIntent from "@/components/ExitIntent";
+
+export default function Home() {
+  return (
+    <main>
+      <Nav />
+      <Hero />
+      <Results />
+      <ValueStack />
+      <Statement />
+      <Founder />
+      <Testimonials />
+      <Gallery />
+      <Interstitial />
+      <FAQ />
+      <Form />
+      <Footer />
+      <StickyMobileCTA />
+      <FloatingWhatsApp />
+      <ExitIntent />
+    </main>
+  );
+}
