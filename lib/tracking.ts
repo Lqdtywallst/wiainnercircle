@@ -2,7 +2,13 @@
 // Fires events into Meta Pixel (fbq), GA4 (gtag) and TikTok Pixel (ttq) when
 // available. Safe to call from any client component — falls back to noop.
 
-type EventName = "Lead" | "ClickWhatsApp" | "ClickCTA" | "FormStart" | "FormStep";
+type EventName =
+  | "Lead"
+  | "ClickWhatsApp"
+  | "ClickTelegram"
+  | "ClickCTA"
+  | "FormStart"
+  | "FormStep";
 
 interface EventPayload {
   [key: string]: unknown;

@@ -23,12 +23,19 @@ export const whatsappUrl = (extraMessage?: string) =>
     extraMessage ?? WHATSAPP.message
   )}`;
 
-// ─── Analytics (set IDs in env / replace here when ready) ─────────────────────
+// ─── Analytics (set in Vercel / .env.local as NEXT_PUBLIC_*) ────────────────
 export const ANALYTICS = {
-  metaPixelId: "",
-  ga4Id: "",
-  tiktokPixelId: "",
-} as const;
+  metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "",
+  ga4Id: process.env.NEXT_PUBLIC_GA4_ID ?? "",
+  tiktokPixelId: process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID ?? "",
+};
+
+// ─── Telegram community (public invite link, not boost link) ──────────────────
+export const TELEGRAM_COMMUNITY = {
+  url: process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "",
+  label: "Canal privado en Telegram",
+  cta: "Unirme al canal",
+};
 
 // ─── Colors ───────────────────────────────────────────────────────────────────
 export const COLORS = {
@@ -87,6 +94,7 @@ export const FAVICONS = {
   png32: "/wia-inner-circle-favicon-32.png",
   png192:"/wia-inner-circle-favicon-192.png",
   png512:"/wia-inner-circle-favicon-512.png",
+  og:    "/wia-inner-circle-og.jpg",
 } as const;
 
 // ─── Nav links ────────────────────────────────────────────────────────────────
@@ -201,7 +209,7 @@ export const FAQ = [
 // ─── Urgency ──────────────────────────────────────────────────────────────────
 export const URGENCY = {
   banner: "Plazas limitadas este mes · Cerramos al alcanzar el cupo",
-  formNote: "Respuesta en menos de 48 horas si tu perfil encaja",
+  formNote: "30 segundos · Te contactamos en menos de 24h si encajas",
   spotsLeft: "Quedan pocas plazas",
 } as const;
 
@@ -258,7 +266,7 @@ export const THANK_YOU = {
   eyebrow: "Solicitud recibida",
   title: "Bienvenido al primer filtro.",
   body:
-    "Tu aplicación está en cola de revisión. Si tu perfil encaja, te contactamos en menos de 48 horas para una llamada de calificación.",
+    "Tu aplicación está en cola. Si encajas, te contactamos en menos de 24 horas. Reserva tu llamada ahora para acelerar el proceso.",
   steps: [
     {
       label: "01",
@@ -276,8 +284,10 @@ export const THANK_YOU = {
       body: "Si hay match, recibes credenciales y onboarding personalizado.",
     },
   ],
-  // Pega aquí el embed code o enlace de Cal.com / Calendly para acelerar
-  calendarUrl: "",
+  // Calendly embed URL → NEXT_PUBLIC_CALENDLY_URL en Vercel (ej. https://calendly.com/tu-usuario/15min?hide_gdpr_banner=1)
+  calendarUrl: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "",
+  calendarTitle: "Reserva tu llamada de calificación",
+  calendarNote: "15 min · Sin compromiso · Confirma tu plaza",
   whatsappPrompt: "Quiero acelerar la conversación",
 } as const;
 

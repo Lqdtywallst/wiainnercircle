@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BRAND, DISCIPLINES, IMAGES, WHATSAPP, whatsappUrl } from "@/lib/constants";
+import { BRAND, DISCIPLINES, IMAGES, TELEGRAM_COMMUNITY, WHATSAPP, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -89,6 +89,17 @@ export default function Hero() {
           >
             {WHATSAPP.label}
           </a>
+          {TELEGRAM_COMMUNITY.url ? (
+            <a
+              href={TELEGRAM_COMMUNITY.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="micro-cta max-sm:w-full max-sm:justify-center"
+              onClick={() => track("ClickTelegram", { source: "hero" })}
+            >
+              {TELEGRAM_COMMUNITY.cta}
+            </a>
+          ) : null}
         </motion.div>
 
         {/* Sub note */}

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
       "Únete a la comunidad privada de traders y emprendedores de alto rendimiento.",
     type: "website",
     locale: "es_ES",
-    images: [{ url: FAVICONS.png512, width: 512, height: 512, alt: "WIA Inner Circle" }],
+    images: [{ url: FAVICONS.og, width: 1200, height: 630, alt: "WIA Inner Circle" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "WIA Inner Circle",
     description: "Comunidad privada. Trading. Negocios. Libertad.",
-    images: [FAVICONS.png512],
+    images: [FAVICONS.og],
   },
   robots: { index: true, follow: true },
 };

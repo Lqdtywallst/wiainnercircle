@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#050505"/>
+  <circle cx="600" cy="315" r="280" fill="none" stroke="#D6FF00" stroke-width="2" opacity="0.15"/>
+  <circle cx="600" cy="315" r="220" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/>
+
+  <!-- Logo circle -->
+  <circle cx="200" cy="315" r="90" fill="none" stroke="#D6FF00" stroke-width="4"/>
+  <text x="200" y="295" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="72" font-weight="900" fill="#ffffff">W</text>
+  <line x1="140" y1="310" x2="260" y2="310" stroke="#D6FF00" stroke-width="1"/>
+  <text x="200" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#D6FF00" letter-spacing="8">IA</text>
+
+  <!-- Main copy -->
+  <text x="340" y="260" font-family="Arial Black, Arial, sans-serif" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="2">WIA INNER CIRCLE</text>
+  <text x="340" y="320" font-family="Arial, sans-serif" font-size="28" fill="#D6FF00" letter-spacing="4">TRADING · NEGOCIOS · INVERSIONES</text>
+  <text x="340" y="380" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.55)">Comunidad privada · Dubai · Acceso por solicitud</text>
+
+  <!-- CTA pill -->
+  <rect x="340" y="420" width="320" height="52" rx="4" fill="#D6FF00"/>
+  <text x="500" y="453" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#050505" letter-spacing="3">SOLICITAR ACCESO</text>
+</svg>
