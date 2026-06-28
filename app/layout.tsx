@@ -11,15 +11,6 @@ export const metadata: Metadata = {
   keywords:
     "WIA Inner Circle, trading, negocios, inversiones, mentalidad, Order Flow, comunidad privada, Dubai, World Institutional Assets",
   authors: [{ name: "World Institutional Assets" }],
-  icons: {
-    icon: [
-      { url: FAVICONS.svg, type: "image/svg+xml" },
-      { url: FAVICONS.png32, sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: FAVICONS.png192, sizes: "192x192", type: "image/png" },
-    ],
-  },
   openGraph: {
     title: "WIA Inner Circle — Tu Siguiente Nivel Empieza Aquí",
     description:
@@ -48,6 +39,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        <link rel="icon" type="image/svg+xml" href={FAVICONS.svg} />
+        <link rel="icon" type="image/png" sizes="32x32" href={FAVICONS.png32} />
+        <link rel="apple-touch-icon" sizes="192x192" href={FAVICONS.png192} />
+      </head>
       <body className="bg-[#050505] text-white antialiased overflow-x-hidden">
         {children}
 
