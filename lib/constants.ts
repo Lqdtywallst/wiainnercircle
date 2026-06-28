@@ -65,10 +65,21 @@ export const VIDEOS = {
 } as const;
 
 // ─── Site URL (used for absolute OG / social images) ──────────────────────────
-// Cambia esto por tu dominio real cuando despliegues (ej. "https://wiainnercircle.com").
-// En Vercel se sobreescribe con la variable de entorno NEXT_PUBLIC_SITE_URL.
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://wiainnercircle.vercel.app";
+// En Vercel se sobreescribe con NEXT_PUBLIC_SITE_URL (con o sin https).
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (raw) {
+    try {
+      const withProtocol = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+      return new URL(withProtocol).origin;
+    } catch {
+      // ignore invalid env value
+    }
+  }
+  return "https://wiainnercircle.vercel.app";
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 // ─── Favicons (all in /public/) ───────────────────────────────────────────────
 export const FAVICONS = {

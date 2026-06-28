@@ -25,7 +25,23 @@ function clean(value: unknown, max = 600): string | null {
   return trimmed || null;
 }
 
+export async function GET() {
+  return NextResponse.json({ ok: true, status: "lead-api-ready" });
+}
+
 export async function POST(request: Request) {
+  try {
+    return await handleLead(request);
+  } catch (err) {
+    console.error("[api/lead] unhandled:", err);
+    return NextResponse.json(
+      { ok: false, error: "Error interno del servidor" },
+      { status: 500 }
+    );
+  }
+}
+
+async function handleLead(request: Request) {
   let body: Body;
   try {
     body = await request.json();

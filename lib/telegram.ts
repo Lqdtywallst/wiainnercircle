@@ -1,15 +1,15 @@
 // ─── Telegram notifier ────────────────────────────────────────────────────────
-// Sends a formatted message to a Telegram chat when a new lead arrives.
-// Setup:
-//   1. Talk to @BotFather, /newbot → save the bot token
-//   2. Send /start to your bot
-//   3. Visit https://api.telegram.org/bot<TOKEN>/getUpdates → copy "chat.id"
-//   4. Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env.local
-
-import { INCOME_OPTIONS } from "@/lib/constants";
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+const INCOME_LABELS: Record<string, string> = {
+  "0-2k": "Menos de $2,000 / mes",
+  "2k-5k": "$2,000 – $5,000 / mes",
+  "5k-10k": "$5,000 – $10,000 / mes",
+  "10k-25k": "$10,000 – $25,000 / mes",
+  "25k+": "Más de $25,000 / mes",
+};
 
 export interface LeadNotificationPayload {
   nombre: string;
@@ -26,7 +26,7 @@ function escapeMarkdown(value: string): string {
 }
 
 function incomeLabel(value: string): string {
-  return INCOME_OPTIONS.find((opt) => opt.value === value)?.label ?? value;
+  return INCOME_LABELS[value] ?? value;
 }
 
 function buildMessage(lead: LeadNotificationPayload): string {
