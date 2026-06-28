@@ -287,7 +287,7 @@ export const THANK_YOU = {
   // Calendly embed URL → NEXT_PUBLIC_CALENDLY_URL en Vercel (ej. https://calendly.com/tu-usuario/15min?hide_gdpr_banner=1)
   calendarUrl: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "",
   calendarTitle: "Reserva tu llamada de calificación",
-  calendarNote: "15 min · Sin compromiso · Confirma tu plaza",
+  calendarNote: "30 min · Sin compromiso · Confirma tu plaza",
   whatsappPrompt: "Quiero acelerar la conversación",
 } as const;
 
