@@ -52,6 +52,8 @@ export const IMAGES = {
   deskDay:      "/images/desk-day.jpeg",
   lamboDay:     "/images/lambo-day.jpeg",
   lamboNight:   "/images/lambo-night.jpeg",
+  santiago:     "/images/santiago.jpeg",
+  santiagoCutout: "/images/santiago-cutout.png",
 } as const;
 
 // ─── Videos (all in /public/videos/) ──────────────────────────────────────────
@@ -201,7 +203,7 @@ export const FOUNDER = {
   name: "Santiago",
   role: "Fundador & Empresario",
   city: "Dubai, EAU",
-  image: "/images/desk-day.jpeg",
+  image: "/images/santiago-cutout.png",
   // Authority badges shown right below the heading
   badges: [
     "Asesor financiero regulado",

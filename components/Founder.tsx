@@ -22,25 +22,29 @@ export default function Founder() {
         variants={scaleIn(0)}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="photo-frame aspect-[4/5] relative max-md:order-1 max-md:w-full
-                   max-sm:aspect-[3/4]"
+        className="relative aspect-[4/5] flex items-end justify-center
+                   max-md:order-1 max-md:w-full max-sm:aspect-[3/4]"
       >
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(55% 45% at 50% 55%, rgba(214,255,0,0.10) 0%, rgba(214,255,0,0.04) 35%, rgba(5,5,5,0) 70%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute left-1/2 -translate-x-1/2 bottom-[6%] w-[72%] h-[14px]
+                     rounded-[50%] bg-black/60 blur-2xl"
+        />
         <img
           src={FOUNDER.image}
           alt={`${FOUNDER.name} — ${FOUNDER.role}`}
-          className="w-full h-full object-cover object-[center_top]"
+          className="relative w-full h-full object-contain object-bottom
+                     drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
           loading="lazy"
         />
-        <div className="absolute inset-0 rounded-[20px] ring-1 ring-lime/[0.08]" />
-        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#050505]/80 to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <p className="font-bebas text-[20px] tracking-[0.18em] text-white">
-            {FOUNDER.name}
-          </p>
-          <p className="font-inter text-[10px] tracking-[0.22em] uppercase text-lime mt-1">
-            {FOUNDER.city}
-          </p>
-        </div>
       </motion.div>
 
       <motion.div
