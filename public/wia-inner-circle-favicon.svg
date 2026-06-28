@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- fondo negro -->
+  <rect x="0" y="0" width="512" height="512" fill="#000000"/>
+
+  <!-- anillo verde lima -->
+  <circle cx="256" cy="256" r="198" fill="none" stroke="#C8FF00" stroke-width="20"/>
+  <!-- borde exterior blanco fino -->
+  <circle cx="256" cy="256" r="209" fill="none" stroke="#ffffff" stroke-width="1"/>
+  <!-- borde interior blanco fino -->
+  <circle cx="256" cy="256" r="187" fill="none" stroke="#ffffff" stroke-width="0.6"/>
+
+  <!-- W blanco bold -->
+  <text x="256" y="232" text-anchor="middle"
+        font-family="Arial Black, Arial, Helvetica, sans-serif"
+        font-size="160" font-weight="900" fill="#ffffff" letter-spacing="-6">W</text>
+
+  <!-- línea separadora verde lima -->
+  <line x1="146" y1="268" x2="366" y2="268" stroke="#C8FF00" stroke-width="1.5"/>
+
+  <!-- IA en verde lima -->
+  <text x="256" y="318" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="36" font-weight="700" fill="#C8FF00" letter-spacing="22">IA</text>
+
+  <!-- INNER CIRCLE -->
+  <text x="256" y="372" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="14" font-weight="400" fill="rgba(255,255,255,0.5)" letter-spacing="12">INNER CIRCLE</text>
+
+  <!-- puntos cardinales verde lima -->
+  <circle cx="256" cy="47" r="4" fill="#C8FF00"/>
+  <circle cx="465" cy="256" r="4" fill="#C8FF00"/>
+  <circle cx="256" cy="465" r="4" fill="#C8FF00"/>
+  <circle cx="47" cy="256" r="4" fill="#C8FF00"/>
+</svg>

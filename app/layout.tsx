@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { ANALYTICS } from "@/lib/constants";
+import { ANALYTICS, FAVICONS } from "@/lib/constants";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,17 +10,28 @@ export const metadata: Metadata = {
   keywords:
     "WIA Inner Circle, trading, negocios, inversiones, mentalidad, Order Flow, comunidad privada, Dubai, World Institutional Assets",
   authors: [{ name: "World Institutional Assets" }],
+  icons: {
+    icon: [
+      { url: FAVICONS.svg, type: "image/svg+xml" },
+      { url: FAVICONS.png32, sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: FAVICONS.png192, sizes: "192x192", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "WIA Inner Circle — Tu Siguiente Nivel Empieza Aquí",
     description:
       "Únete a la comunidad privada de traders y emprendedores de alto rendimiento.",
     type: "website",
     locale: "es_ES",
+    images: [{ url: FAVICONS.png512, width: 512, height: 512, alt: "WIA Inner Circle" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "WIA Inner Circle",
     description: "Comunidad privada. Trading. Negocios. Libertad.",
+    images: [FAVICONS.png512],
   },
   robots: { index: true, follow: true },
 };

@@ -64,6 +64,14 @@ export const VIDEOS = {
   },
 } as const;
 
+// ─── Favicons (all in /public/) ───────────────────────────────────────────────
+export const FAVICONS = {
+  svg:   "/wia-inner-circle-favicon.svg",
+  png32: "/wia-inner-circle-favicon-32.png",
+  png192:"/wia-inner-circle-favicon-192.png",
+  png512:"/wia-inner-circle-favicon-512.png",
+} as const;
+
 // ─── Nav links ────────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: "Método",     href: "#resultados" },
