@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { BRAND, NAV_LINKS } from "@/lib/constants";
+import { BRAND, FAVICONS, NAV_LINKS } from "@/lib/constants";
 import { track } from "@/lib/tracking";
 
 export default function Nav() {
@@ -31,11 +31,20 @@ export default function Nav() {
       {/* Logo */}
       <a
         href="/"
-        className="font-bebas text-[18px] tracking-[0.28em] text-white no-underline
-                   max-sm:text-[16px] max-sm:tracking-[0.22em]"
+        className="flex items-center gap-3 no-underline max-sm:gap-2"
       >
-        {BRAND.nameShort}
-        <span className="text-lime ml-2 max-xs:hidden">INNER CIRCLE</span>
+        <img
+          src={FAVICONS.svg}
+          alt="WIA Inner Circle"
+          className="h-8 w-8 max-sm:h-7 max-sm:w-7"
+        />
+        <span
+          className="font-bebas text-[18px] tracking-[0.28em] text-white
+                     max-sm:text-[16px] max-sm:tracking-[0.22em]"
+        >
+          {BRAND.nameShort}
+          <span className="text-lime ml-2 max-xs:hidden">INNER CIRCLE</span>
+        </span>
       </a>
 
       {/* Desktop links */}
