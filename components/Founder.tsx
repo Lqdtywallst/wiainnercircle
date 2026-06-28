@@ -103,30 +103,6 @@ export default function Founder() {
           ))}
         </motion.div>
 
-        {/* Companies */}
-        <motion.div
-          variants={fadeUp()}
-          className="flex flex-wrap items-center gap-2.5 mb-9 max-sm:mb-7"
-        >
-          {FOUNDER.companies.map((company) => (
-            <span
-              key={company}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full
-                         border border-lime/25 bg-lime/[0.04]
-                         font-inter text-[10px] font-medium tracking-[0.16em]
-                         uppercase text-white/85
-                         max-sm:text-[9px] max-sm:tracking-[0.12em] max-sm:px-3"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-lime" aria-hidden />
-              {company}
-            </span>
-          ))}
-          <span className="font-inter text-[10px] tracking-[0.18em] uppercase text-white/35
-                           max-sm:text-[9px]">
-            {FOUNDER.companiesExtra}
-          </span>
-        </motion.div>
-
         <motion.p
           variants={fadeUp()}
           className="font-inter text-[15px] font-light leading-[1.9]

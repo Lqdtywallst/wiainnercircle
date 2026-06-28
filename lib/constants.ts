@@ -208,24 +208,14 @@ export const FOUNDER = {
   badges: [
     "Asesor financiero regulado",
   ],
-  // Companies founded or owned by Santiago
-  companies: [
-    "World Institutional Assets",
-    "WIA Software",
-    "Dynasty Prestige Car Rental",
-  ],
-  companiesExtra: "+ varias empresas más",
   // Edit / añade tus credenciales reales aquí ↓
   credentials: [
     "Asesor financiero regulado",
-    "Fundador de World Institutional Assets",
-    "Fundador de WIA Software",
-    "Fundador de Dynasty Prestige Car Rental",
-    "Dueño y operador de varias empresas",
-    "Trader institucional · metodología Order Flow desde Dubai",
+    "Empresario con varias compañías en operación",
+    "Trader profesional · metodología Order Flow desde Dubai",
   ],
   intro:
-    "Santiago es asesor financiero regulado y dirige varias empresas desde Dubai: World Institutional Assets, WIA Software y Dynasty Prestige Car Rental, entre otras. Combina trading institucional, tecnología y negocios, y construye WIA Inner Circle como el entorno que él hubiera querido tener cuando empezó.",
+    "Santiago es asesor financiero regulado, trader profesional y dirige varias empresas desde Dubai. Combina trading, tecnología y negocios, y construye WIA Inner Circle como el entorno que él hubiera querido tener cuando empezó.",
 } as const;
 
 // ─── Exit intent message ──────────────────────────────────────────────────────
