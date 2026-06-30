@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { insertLead, type LeadInsert } from "@/lib/supabase";
+import { sendMetaLeadEvent } from "@/lib/meta-capi";
 import { notifyTelegram } from "@/lib/telegram";
+import type { UtmParams } from "@/lib/utm";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const REQUIRED = ["nombre", "whatsapp", "ingresos"] as const;
+const REQUIRED_FULL = ["nombre", "whatsapp", "ingresos"] as const;
+const REQUIRED_QUICK = ["nombre", "whatsapp"] as const;
 
 interface Body {
   nombre?: string;
@@ -15,7 +18,9 @@ interface Body {
   ocupacion?: string;
   objetivo?: string;
   source?: string;
-  // Honeypot field — must stay empty
+  formType?: "full" | "quick";
+  utm?: UtmParams;
+  eventId?: string;
   website?: string;
 }
 
@@ -23,6 +28,12 @@ function clean(value: unknown, max = 600): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim().slice(0, max);
   return trimmed || null;
+}
+
+function clientIp(request: Request): string | null {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0]?.trim() ?? null;
+  return request.headers.get("x-real-ip");
 }
 
 export async function GET() {
@@ -49,12 +60,14 @@ async function handleLead(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  // Honeypot: if a bot fills the hidden "website" field, silently succeed.
   if (body.website && body.website.trim().length > 0) {
     return NextResponse.json({ ok: true });
   }
 
-  for (const field of REQUIRED) {
+  const formType = body.formType === "quick" ? "quick" : "full";
+  const required = formType === "quick" ? REQUIRED_QUICK : REQUIRED_FULL;
+
+  for (const field of required) {
     if (!clean(body[field])) {
       return NextResponse.json(
         { ok: false, error: `Falta el campo "${field}"` },
@@ -63,14 +76,27 @@ async function handleLead(request: Request) {
     }
   }
 
+  const ingresos =
+    clean(body.ingresos) ?? (formType === "quick" ? "pending" : null);
+
+  if (!ingresos) {
+    return NextResponse.json(
+      { ok: false, error: 'Falta el campo "ingresos"' },
+      { status: 422 }
+    );
+  }
+
+  const utm = body.utm && typeof body.utm === "object" ? body.utm : {};
+  const utmJson = Object.keys(utm).length ? JSON.stringify(utm).slice(0, 600) : null;
+
   const lead: LeadInsert = {
     nombre: clean(body.nombre)!,
     whatsapp: clean(body.whatsapp)!,
-    ingresos: clean(body.ingresos)!,
+    ingresos,
     email: clean(body.email),
     ocupacion: clean(body.ocupacion, 200),
-    objetivo: clean(body.objetivo, 1200),
-    source: clean(body.source, 120),
+    objetivo: utmJson ?? clean(body.objetivo, 1200),
+    source: clean(body.source, 240),
     user_agent: clean(request.headers.get("user-agent") ?? "", 400),
     referer: clean(request.headers.get("referer") ?? "", 400),
   };
@@ -85,7 +111,8 @@ async function handleLead(request: Request) {
     console.error("[api/lead] insertLead failed:", err);
   }
 
-  // We fire notification regardless of DB success — we never want to lose a lead.
+  const eventId = clean(body.eventId, 80) ?? `lead-${Date.now()}`;
+
   try {
     await notifyTelegram({
       nombre: lead.nombre,
@@ -93,18 +120,31 @@ async function handleLead(request: Request) {
       ingresos: lead.ingresos,
       email: lead.email,
       ocupacion: lead.ocupacion,
-      objetivo: lead.objetivo,
+      objetivo: utmJson ? null : clean(body.objetivo, 1200),
       source: lead.source,
+      formType,
     });
   } catch (err) {
     console.error("[api/lead] notifyTelegram failed:", err);
   }
 
-  // If DB failed but we logged & notified, still return ok so the user moves to /gracias.
-  // The lead lives in the Telegram message + server logs.
+  try {
+    await sendMetaLeadEvent({
+      eventId,
+      eventSourceUrl: lead.referer,
+      clientIp: clientIp(request),
+      userAgent: lead.user_agent,
+      nombre: lead.nombre,
+      whatsapp: lead.whatsapp,
+    });
+  } catch (err) {
+    console.error("[api/lead] sendMetaLeadEvent failed:", err);
+  }
+
   return NextResponse.json({
     ok: true,
     saved: Boolean(saved),
     persistence_warning: saveError,
+    eventId,
   });
 }

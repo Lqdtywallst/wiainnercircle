@@ -4,6 +4,7 @@ const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 const INCOME_LABELS: Record<string, string> = {
+  pending: "Por confirmar (captura rápida)",
   "0-2k": "Menos de $2,000 / mes",
   "2k-5k": "$2,000 – $5,000 / mes",
   "5k-10k": "$5,000 – $10,000 / mes",
@@ -19,6 +20,7 @@ export interface LeadNotificationPayload {
   ocupacion?: string | null;
   objetivo?: string | null;
   source?: string | null;
+  formType?: "full" | "quick";
 }
 
 function escapeMarkdown(value: string): string {
@@ -38,7 +40,9 @@ function buildMessage(lead: LeadNotificationPayload): string {
   const waLink = `https://wa.me/${waNumber}?text=${replyMessage}`;
 
   const lines = [
-    "🔥 *NUEVO LEAD · WIA Inner Circle*",
+    lead.formType === "quick"
+      ? "⚡ *LEAD RÁPIDO · WIA Inner Circle*"
+      : "🔥 *NUEVO LEAD · WIA Inner Circle*",
     "",
     `*Nombre:* ${escapeMarkdown(lead.nombre)}`,
     `*WhatsApp:* ${escapeMarkdown(lead.whatsapp)}`,

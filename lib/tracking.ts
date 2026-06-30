@@ -9,9 +9,11 @@ type EventName =
   | "ClickCTA"
   | "ClickNav"
   | "FormStart"
-  | "FormStep";
+  | "FormStep"
+  | "ExitIntent";
 
 interface EventPayload {
+  eventId?: string;
   [key: string]: unknown;
 }
 
@@ -27,16 +29,23 @@ declare global {
 export function track(event: EventName, payload: EventPayload = {}) {
   if (typeof window === "undefined") return;
 
+  const { eventId, ...rest } = payload;
+  const fbOptions = eventId ? { eventID: eventId } : undefined;
+
   try {
-    window.fbq?.("track", event, payload);
+    if (fbOptions) {
+      window.fbq?.("track", event, rest, fbOptions);
+    } else {
+      window.fbq?.("track", event, rest);
+    }
   } catch {}
 
   try {
-    window.gtag?.("event", event, payload);
+    window.gtag?.("event", event, rest);
   } catch {}
 
   try {
-    window.ttq?.track(event, payload);
+    window.ttq?.track(event, rest);
   } catch {}
 
   if (process.env.NODE_ENV !== "production") {

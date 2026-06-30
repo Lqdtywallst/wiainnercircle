@@ -9,6 +9,7 @@ import {
   WHATSAPP,
   whatsappUrl,
 } from "@/lib/constants";
+import { createLeadEventId, submitLead } from "@/lib/lead-client";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -55,26 +56,23 @@ export default function Form() {
     setSubmitting(true);
     setErrorMessage(null);
 
+    const eventId = createLeadEventId();
+
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          email: null,
-          ocupacion: null,
-          objetivo: null,
-          website: honeypot,
-          source: typeof window !== "undefined" ? window.location.pathname : "/",
-        }),
+      const result = await submitLead({
+        nombre: form.nombre,
+        whatsapp: form.whatsapp,
+        ingresos: form.ingresos,
+        formType: "full",
+        honeypot,
+        eventId,
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || "Error al enviar la solicitud");
+      if (!result.ok) {
+        throw new Error(result.error || "Error al enviar la solicitud");
       }
 
-      track("Lead", { ingresos: form.ingresos, form: "single-step" });
+      track("Lead", { ingresos: form.ingresos, form: "single-step", eventId });
       router.push("/gracias");
     } catch (err) {
       setSubmitting(false);

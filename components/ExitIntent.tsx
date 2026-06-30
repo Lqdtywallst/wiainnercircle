@@ -23,7 +23,7 @@ export default function ExitIntent() {
       sessionStorage.setItem(STORAGE_KEY, "1");
       setHasFired(true);
       setOpen(true);
-      track("ClickCTA", { source: `exit-intent-${source}` });
+      track("ExitIntent", { trigger: source });
     },
     [hasFired]
   );
@@ -131,6 +131,17 @@ export default function ExitIntent() {
               }}
             >
               {EXIT_INTENT.cta}
+            </a>
+
+            <a
+              href="#acceso"
+              className="btn-ghost w-full justify-center mt-3"
+              onClick={() => {
+                track("ClickCTA", { source: "exit-intent-form" });
+                close();
+              }}
+            >
+              {EXIT_INTENT.formCta}
             </a>
 
             <button

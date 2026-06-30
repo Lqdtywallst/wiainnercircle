@@ -66,7 +66,7 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* CTA — formulario primero, WhatsApp como alternativa */}
         <motion.div
           variants={fadeUp(0.37)}
           initial="hidden"
@@ -74,7 +74,7 @@ export default function Hero() {
           className="mt-11 max-sm:mt-8 flex flex-wrap items-center gap-4"
         >
           <a
-            href="#acceso"
+            href="#contacto-rapido"
             className="btn-lime"
             onClick={() => track("ClickCTA", { source: "hero-primary" })}
           >
@@ -84,7 +84,7 @@ export default function Hero() {
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ghost"
+            className="btn-ghost max-sm:hidden"
             onClick={() => track("ClickWhatsApp", { source: "hero" })}
           >
             {WHATSAPP.label}

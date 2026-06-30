@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import AttributionCapture from "@/components/AttributionCapture";
 import { ANALYTICS, FAVICONS, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" sizes="192x192" href={FAVICONS.png192} />
       </head>
       <body className="bg-[#050505] text-white antialiased overflow-x-hidden">
+        <AttributionCapture />
         {children}
 
         {metaPixelId && (

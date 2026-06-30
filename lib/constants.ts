@@ -206,6 +206,17 @@ export const FAQ = [
   },
 ] as const;
 
+// ─── Mid-page quick capture (after Founder) ───────────────────────────────────
+export const LEAD_CAPTURE = {
+  eyebrow: "¿Encaja contigo?",
+  title: "DEJA TU WHATSAPP.",
+  titleAccent: "TE LLAMAMOS.",
+  body: "Solo nombre y WhatsApp. Sin compromiso. Te contactamos en menos de 24h si tu perfil encaja.",
+  note: "2 campos · 15 segundos",
+  cta: "Quiero que me contacten",
+  skip: "Prefiero completar la solicitud completa",
+} as const;
+
 // ─── Urgency ──────────────────────────────────────────────────────────────────
 export const URGENCY = {
   banner: "Plazas limitadas este mes · Cerramos al alcanzar el cupo",
@@ -255,6 +266,7 @@ export const EXIT_INTENT = {
   body:
     "Escríbenos un WhatsApp y te decimos en 5 minutos si el Inner Circle encaja contigo.",
   cta: "Hablar ahora por WhatsApp",
+  formCta: "O aplicar en 30 segundos",
   dismiss: "Continuar en la web",
 } as const;
 
