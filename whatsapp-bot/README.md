@@ -57,7 +57,10 @@ Variables: `{{1}}` = nombre, `{{2}}` = URL Calendly o /gracias.
 
 ## Desplegar en Railway
 
-1. [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**
+> **Importante:** en **Settings → Source → Root Directory** pon exactamente: `whatsapp-bot`
+> Sin esto Railway intentará construir la web Next.js y fallará.
+
+1. [railway.app](https://railway.app) → **New Project** → **GitHub Repository**
 2. Selecciona este repo y configura **Root Directory:** `whatsapp-bot`
 3. **Build command:** `npm install && npm run build`
 4. **Start command:** `npm start`

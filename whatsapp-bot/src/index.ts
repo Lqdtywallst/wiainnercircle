@@ -22,7 +22,7 @@ app.get("/health", (_req, res) => {
 app.use("/webhook", webhookRouter);
 app.use("/send-lead-msg", sendLeadRouter);
 
-app.listen(config.port, () => {
+app.listen(config.port, "0.0.0.0", () => {
   console.info(`[wia-whatsapp-bot] listening on :${config.port}`);
   if (!isWhatsAppConfigured()) {
     console.warn(
