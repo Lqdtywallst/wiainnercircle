@@ -7,6 +7,7 @@ type EventName =
   | "ClickWhatsApp"
   | "ClickTelegram"
   | "ClickCTA"
+  | "ClickNav"
   | "FormStart"
   | "FormStep";
 
