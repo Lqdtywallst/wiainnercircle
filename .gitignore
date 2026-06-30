@@ -40,9 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# whatsapp-bot (Railway)
+# whatsapp-bot (Railway) — dist/ se commitea para build sin tsc en Docker
 /whatsapp-bot/node_modules
-/whatsapp-bot/dist
 
 # local helpers (created during dev)
 /.local-node/
