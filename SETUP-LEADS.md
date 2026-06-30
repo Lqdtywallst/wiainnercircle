@@ -133,3 +133,44 @@ El endpoint está diseñado para **no perder leads nunca**:
 - Si ambos fallan, el lead queda en los logs (Vercel → Logs) y la web devuelve éxito al usuario (no le penalizamos por nuestro fallo).
 
 Lo importante: **revisa los logs cada cierto tiempo** los primeros días para confirmar que todo va fino.
+
+---
+
+## 7. Responder leads en minutos (operativa)
+
+La web promete **respuesta en minutos** en horario activo (Dubai, GMT+4). Esto cierra más ventas que esperar 24h.
+
+### 7.1 Telegram al instante
+1. Activa **notificaciones con sonido** para el chat del bot `@Wia_leads_bot`.
+2. Cuando llegue un lead verás: `⏱ Responder en menos de 15 min`.
+3. Pulsa **Responder por WhatsApp** — abre WhatsApp con la plantilla ya escrita (incluye link de Calendly si está configurado).
+
+### 7.2 Plantillas (también en `lib/constants.ts` → `WHATSAPP_REPLY`)
+
+**Primer contacto** (automática vía botón Telegram):
+```
+Hola {nombre}, soy Santiago de WIA Inner Circle.
+
+He recibido tu solicitud. ¿Tienes 5 minutos ahora para una llamada rápida y ver si encajamos?
+
+O reserva tu llamada aquí: [tu Calendly]
+```
+
+**Follow-up** si no responde en 2–4 h:
+```
+Hola {nombre}, te escribo de nuevo desde WIA Inner Circle. ¿Sigues interesado en aplicar? Sin presión — solo confirmo si encaja contigo.
+```
+
+**Tras calificar** en la llamada:
+```
+Perfecto {nombre}. Te envío los detalles de acceso y el siguiente paso por aquí.
+```
+
+### 7.3 SLA recomendado
+| Momento | Acción |
+|---------|--------|
+| Lead nuevo | Responder en **< 15 min** (horario 08:00–22:00 Dubai) |
+| Sin respuesta en 3 h | Enviar follow-up |
+| Lead calificado | Enviar detalles + pedir reserva Calendly si no la hizo |
+
+Horario activo por defecto: **08:00 – 22:00 · Dubai (GMT+4)** — edítalo en `RESPONSE_SLA` en `lib/constants.ts` si cambia.

@@ -23,6 +23,37 @@ export const whatsappUrl = (extraMessage?: string) =>
     extraMessage ?? WHATSAPP.message
   )}`;
 
+// ─── SLA de respuesta (copy + plantillas operativas) ─────────────────────────
+export const RESPONSE_SLA = {
+  promise: "Te escribimos en minutos en horario activo (Dubai)",
+  promiseShort: "Respuesta en minutos · Horario Dubai",
+  activeHours: "08:00 – 22:00 · Dubai (GMT+4)",
+  telegramHint: "Responder en menos de 15 min",
+} as const;
+
+/** Plantillas para copiar/pegar al responder leads (Telegram → botón WhatsApp). */
+export const WHATSAPP_REPLY = {
+  firstContact:
+    "Hola {nombre}, soy Santiago de WIA Inner Circle.\n\nHe recibido tu solicitud. ¿Tienes 5 minutos ahora para una llamada rápida y ver si encajamos?",
+  followUpNoAnswer:
+    "Hola {nombre}, te escribo de nuevo desde WIA Inner Circle. ¿Sigues interesado en aplicar? Sin presión — solo confirmo si encaja contigo.",
+  afterQualification:
+    "Perfecto {nombre}. Te envío los detalles de acceso y el siguiente paso por aquí.",
+} as const;
+
+export function whatsappFirstContactMessage(
+  nombre: string,
+  calendlyUrl?: string | null
+): string {
+  const first = nombre.trim().split(/\s+/)[0] || nombre;
+  let msg = WHATSAPP_REPLY.firstContact.replace("{nombre}", first);
+  const calendar = calendlyUrl?.trim();
+  if (calendar) {
+    msg += `\n\nO reserva tu llamada aquí: ${calendar}`;
+  }
+  return msg;
+}
+
 // ─── Analytics (set in Vercel / .env.local as NEXT_PUBLIC_*) ────────────────
 export const ANALYTICS = {
   metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "",
@@ -211,7 +242,7 @@ export const LEAD_CAPTURE = {
   eyebrow: "¿Encaja contigo?",
   title: "DEJA TU WHATSAPP.",
   titleAccent: "TE LLAMAMOS.",
-  body: "Solo nombre y WhatsApp. Sin compromiso. Te contactamos en menos de 24h si tu perfil encaja.",
+  body: "Solo nombre y WhatsApp. Sin compromiso. Te escribimos en minutos en horario activo si encajas.",
   note: "2 campos · 15 segundos",
   cta: "Quiero que me contacten",
   skip: "Prefiero completar la solicitud completa",
@@ -220,7 +251,7 @@ export const LEAD_CAPTURE = {
 // ─── Urgency ──────────────────────────────────────────────────────────────────
 export const URGENCY = {
   banner: "Plazas limitadas este mes · Cerramos al alcanzar el cupo",
-  formNote: "30 segundos · Te contactamos en menos de 24h si encajas",
+  formNote: "30 segundos · Respuesta en minutos si encajas (horario Dubai)",
   spotsLeft: "Quedan pocas plazas",
 } as const;
 
@@ -275,12 +306,12 @@ export const THANK_YOU = {
   eyebrow: "Solicitud recibida",
   title: "Bienvenido al primer filtro.",
   body:
-    "Tu aplicación está en cola. Si encajas, te contactamos en menos de 24 horas. Reserva tu llamada ahora para acelerar el proceso.",
+    "Tu solicitud llegó directo a Santiago. Si encajas, te escribimos en minutos. Reserva tu llamada ahora y adelanta el proceso.",
   steps: [
     {
       label: "01",
       title: "Revisamos tu perfil",
-      body: "Validamos que encajas con el nivel de la comunidad.",
+      body: "Validamos que encajas con el nivel de la comunidad. En horario activo, normalmente en menos de 15 minutos.",
     },
     {
       label: "02",

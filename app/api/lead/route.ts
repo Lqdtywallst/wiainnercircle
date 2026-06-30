@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { insertLead, type LeadInsert } from "@/lib/supabase";
 import { sendMetaLeadEvent } from "@/lib/meta-capi";
 import { notifyTelegram } from "@/lib/telegram";
+import { notifyWhatsAppBot } from "@/lib/whatsapp-bot";
 import type { UtmParams } from "@/lib/utm";
 
 export const runtime = "nodejs";
@@ -139,6 +140,17 @@ async function handleLead(request: Request) {
     });
   } catch (err) {
     console.error("[api/lead] sendMetaLeadEvent failed:", err);
+  }
+
+  try {
+    await notifyWhatsAppBot({
+      nombre: lead.nombre,
+      whatsapp: lead.whatsapp,
+      formType,
+      source: lead.source,
+    });
+  } catch (err) {
+    console.error("[api/lead] notifyWhatsAppBot failed:", err);
   }
 
   return NextResponse.json({

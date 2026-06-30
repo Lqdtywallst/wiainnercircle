@@ -6,7 +6,7 @@ import ThankYou from "@/components/ThankYou";
 export const metadata: Metadata = {
   title: "Solicitud recibida — WIA Inner Circle",
   description:
-    "Tu aplicación al WIA Inner Circle está en revisión. Si encajas, te contactamos en menos de 48 horas.",
+    "Tu aplicación al WIA Inner Circle está en revisión. Si encajas, te escribimos en minutos en horario activo.",
   robots: { index: false, follow: false },
 };
 

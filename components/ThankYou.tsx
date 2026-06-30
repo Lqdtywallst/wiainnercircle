@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import {
+  RESPONSE_SLA,
   TELEGRAM_COMMUNITY,
   THANK_YOU,
   WHATSAPP,
@@ -88,7 +89,7 @@ export default function ThankYou() {
             Siguiente paso: habla con Santiago
           </p>
           <p className="font-inter text-[13px] font-light text-white/50 mb-6 leading-[1.7]">
-            Escríbenos por WhatsApp ahora y adelanta la conversación. Respondemos en horario Dubai.
+            Escríbenos por WhatsApp ahora y adelanta la conversación. {RESPONSE_SLA.promiseShort}.
           </p>
           <a
             href={whatsappUrl(
@@ -163,7 +164,7 @@ export default function ThankYou() {
         ) : null}
 
         <p className="font-inter text-[10px] tracking-[0.18em] uppercase text-white/35">
-          {WHATSAPP.label} · Respuesta en horario Dubai
+          {WHATSAPP.label} · {RESPONSE_SLA.promiseShort}
         </p>
       </motion.div>
     </section>

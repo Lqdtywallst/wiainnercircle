@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# whatsapp-bot (Railway)
+/whatsapp-bot/node_modules
+/whatsapp-bot/dist
+
 # local helpers (created during dev)
 /.local-node/

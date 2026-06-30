@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BRAND, DISCIPLINES, IMAGES, TELEGRAM_COMMUNITY, WHATSAPP, whatsappUrl } from "@/lib/constants";
+import { BRAND, DISCIPLINES, IMAGES, RESPONSE_SLA, TELEGRAM_COMMUNITY, WHATSAPP, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -110,7 +110,7 @@ export default function Hero() {
           className="font-inter text-[10px] tracking-[0.12em] text-white/20 mt-5
                      max-sm:max-w-[260px] max-sm:leading-relaxed"
         >
-          Acceso por solicitud únicamente · Plazas limitadas
+          Acceso por solicitud únicamente · {RESPONSE_SLA.promiseShort}
         </motion.p>
       </div>
 
