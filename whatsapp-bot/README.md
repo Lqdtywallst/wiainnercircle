@@ -57,15 +57,16 @@ Variables: `{{1}}` = nombre, `{{2}}` = URL Calendly o /gracias.
 
 ## Desplegar en Railway
 
-> **Importante:** en **Settings → Source → Root Directory** pon exactamente: `whatsapp-bot`
-> Sin esto Railway intentará construir la web Next.js y fallará.
+**Opción A — Root Directory:** `whatsapp-bot` (Settings → Source)
+
+**Opción B — Root vacío:** el `Dockerfile` en la raíz del repo construye solo este bot.
+
+> Ignora variables sugeridas de Supabase/Telegram/`NEXT_PUBLIC_*` — son de la web en Vercel.
 
 1. [railway.app](https://railway.app) → **New Project** → **GitHub Repository**
-2. Selecciona este repo y configura **Root Directory:** `whatsapp-bot`
-3. **Build command:** `npm install && npm run build`
-4. **Start command:** `npm start`
-5. Añade las variables de entorno arriba
-6. **Settings → Networking → Generate Domain** (ej. `wia-whatsapp-bot-production.up.railway.app`)
+2. Variables de entorno (solo las de arriba)
+3. **Settings → Networking → Generate Domain**
+4. **Redeploy**
 
 ## Conectar Meta webhook
 
