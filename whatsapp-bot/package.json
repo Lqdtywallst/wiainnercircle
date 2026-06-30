@@ -5,9 +5,10 @@
   "description": "WhatsApp Cloud API bot for WIA Inner Circle (Railway)",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --env-file=.env src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "start:local": "node --env-file=.env dist/index.js",
     "typecheck": "tsc --noEmit"
   },
   "engines": {
