@@ -238,17 +238,14 @@ export const FOUNDER = {
   city: "Dubai, EAU",
   image: "/images/santiago-cutout.png",
   // Authority badges shown right below the heading
-  badges: [
-    "Asesor financiero regulado",
-  ],
+  badges: [] as const,
   // Edit / añade tus credenciales reales aquí ↓
   credentials: [
-    "Asesor financiero regulado",
     "Empresario con varias compañías en operación",
     "Trader profesional · metodología Order Flow desde Dubai",
   ],
   intro:
-    "Santiago es asesor financiero regulado, trader profesional y dirige varias empresas desde Dubai. Combina trading, tecnología y negocios, y construye WIA Inner Circle como el entorno que él hubiera querido tener cuando empezó.",
+    "Santiago es trader profesional y dirige varias empresas desde Dubai. Combina trading, tecnología y negocios, y construye WIA Inner Circle como el entorno que él hubiera querido tener cuando empezó.",
 } as const;
 
 // ─── Exit intent message ──────────────────────────────────────────────────────

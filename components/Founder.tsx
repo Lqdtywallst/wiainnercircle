@@ -68,40 +68,41 @@ export default function Founder() {
           <span className="text-white/[0.22]">{FOUNDER.role.toUpperCase()}.</span>
         </motion.h2>
 
-        {/* Authority badges */}
-        <motion.div
-          variants={fadeUp()}
-          className="flex flex-wrap items-center gap-2 mb-7 max-sm:mb-6"
-        >
-          {FOUNDER.badges.map((badge) => (
-            <span
-              key={badge}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full
-                         bg-lime text-[#050505]
-                         font-inter text-[10px] font-semibold tracking-[0.16em]
-                         uppercase
-                         max-sm:text-[9px] max-sm:tracking-[0.12em] max-sm:px-3"
-            >
-              <svg
-                aria-hidden
-                width="11"
-                height="11"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+        {FOUNDER.badges.length > 0 && (
+          <motion.div
+            variants={fadeUp()}
+            className="flex flex-wrap items-center gap-2 mb-7 max-sm:mb-6"
+          >
+            {FOUNDER.badges.map((badge) => (
+              <span
+                key={badge}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full
+                           bg-lime text-[#050505]
+                           font-inter text-[10px] font-semibold tracking-[0.16em]
+                           uppercase
+                           max-sm:text-[9px] max-sm:tracking-[0.12em] max-sm:px-3"
               >
-                <path
-                  d="M2.5 6.3L4.9 8.7L9.7 3.6"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              {badge}
-            </span>
-          ))}
-        </motion.div>
+                <svg
+                  aria-hidden
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.5 6.3L4.9 8.7L9.7 3.6"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {badge}
+              </span>
+            ))}
+          </motion.div>
+        )}
 
         <motion.p
           variants={fadeUp()}
