@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import AttributionCapture from "@/components/AttributionCapture";
 import { ANALYTICS, FAVICONS, SITE_URL } from "@/lib/constants";
 import "./globals.css";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-[#050505] text-white antialiased overflow-x-hidden">
         <AttributionCapture />
         {children}
+        <Analytics />
 
         {metaPixelId && (
           <>
