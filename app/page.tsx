@@ -5,6 +5,7 @@ import ValueStack from "@/components/ValueStack";
 import Statement from "@/components/Statement";
 import Founder from "@/components/Founder";
 import LeadCapture from "@/components/LeadCapture";
+import ProfileFilter from "@/components/ProfileFilter";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Interstitial from "@/components/Interstitial";
@@ -25,6 +26,7 @@ export default function Home() {
       <Statement />
       <Founder />
       <LeadCapture />
+      <ProfileFilter />
       <Testimonials />
       <Gallery />
       <Interstitial />

@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
+  FORM_COPY,
   INCOME_OPTIONS,
   URGENCY,
   WHATSAPP,
@@ -133,7 +134,18 @@ export default function Form() {
         animate={inView ? "visible" : "hidden"}
         className="w-full max-w-[620px] mb-7"
       >
-        <p className="urgency-strip rounded-md">{URGENCY.banner}</p>
+        <div className="flex items-center gap-2 text-sm text-white/40 mb-4">
+          <span
+            aria-hidden
+            className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block flex-shrink-0"
+          />
+          <span>
+            <strong className="text-white font-semibold">
+              {URGENCY.spotsAvailable} plazas disponibles
+            </strong>{" "}
+            este mes · Cupo máximo: {URGENCY.maxMembers} miembros
+          </span>
+        </div>
       </motion.div>
 
       <motion.form
@@ -190,6 +202,9 @@ export default function Form() {
               <option key={value} value={value}>{label}</option>
             ))}
           </select>
+          <p className="font-inter text-xs text-white/35 mt-1 leading-relaxed">
+            {FORM_COPY.incomeHint}
+          </p>
         </div>
 
         <button
@@ -244,9 +259,9 @@ export default function Form() {
           </p>
         )}
 
-        <p className="font-inter text-[10px] text-white/22 text-center tracking-[0.08em]
+        <p className="font-inter text-xs text-white/35 text-center tracking-[0.04em]
                       max-sm:leading-relaxed">
-          {URGENCY.spotsLeft} · Solo aceptamos perfiles serios.
+          {URGENCY.formFooter}
         </p>
       </motion.form>
     </section>

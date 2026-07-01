@@ -2,14 +2,14 @@
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { FAQ as FAQ_ITEMS, MICRO_CTAS } from "@/lib/constants";
+import { FAQ as FAQ_ITEMS, FAQ_PRICING_INDEX, MICRO_CTAS } from "@/lib/constants";
 import { fadeUp, staggerContainer, EASE_OUT_EXPO } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
 export default function FAQ() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(FAQ_PRICING_INDEX);
 
   return (
     <section

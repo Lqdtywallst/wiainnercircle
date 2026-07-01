@@ -6,6 +6,33 @@ import { TESTIMONIALS, MICRO_CTAS } from "@/lib/constants";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
+function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .map((part) => part[0] ?? "")
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="opacity-50"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function Testimonials() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -50,24 +77,50 @@ export default function Testimonials() {
         </div>
 
         <div className="grid grid-cols-2 gap-7 max-md:grid-cols-1 max-md:gap-5">
-          {TESTIMONIALS.map(({ quote, name, role }) => (
+          {TESTIMONIALS.map(({ quote, name, role, avatar, social }) => (
             <motion.figure
               key={name}
               variants={fadeUp()}
               className="border border-white/[0.07] rounded-[18px] p-9 bg-white/[0.015]
                          max-sm:p-7"
             >
-              <blockquote className="font-inter text-[17px] font-light leading-[1.65] text-white/85 mb-7
+              <div className="flex items-center gap-4 mb-6 max-sm:mb-5">
+                {avatar ? (
+                  <img
+                    src={avatar}
+                    alt=""
+                    className="w-12 h-12 rounded-full object-cover object-top flex-shrink-0
+                               ring-1 ring-white/10"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span
+                    aria-hidden
+                    className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center
+                               bg-lime text-[#050505] font-inter text-[13px] font-semibold"
+                  >
+                    {initials(name)}
+                  </span>
+                )}
+                <div className="min-w-0">
+                  <p className="font-inter text-[14px] font-semibold text-white tracking-[0.02em]">
+                    {name}
+                  </p>
+                  <p className="font-inter text-[11px] uppercase tracking-[0.14em] text-white/40 mt-0.5">
+                    {role}
+                  </p>
+                </div>
+              </div>
+
+              <blockquote className="font-inter text-[17px] font-light leading-[1.65] text-white/85 mb-6
                                      max-sm:text-[15px] max-sm:leading-[1.6] max-sm:mb-5">
                 “{quote}”
               </blockquote>
-              <figcaption className="flex items-center gap-3">
-                <span className="block w-7 h-px bg-lime/60" />
-                <span className="font-inter text-[12px] text-white/70 tracking-[0.04em]">
-                  {name}
-                </span>
-                <span className="font-inter text-[10px] uppercase tracking-[0.18em] text-white/30">
-                  {role}
+
+              <figcaption>
+                <span className="inline-flex items-center gap-2 font-inter text-[11px] text-white/35 tracking-[0.04em]">
+                  <InstagramIcon />
+                  {social.handle}
                 </span>
               </figcaption>
             </motion.figure>

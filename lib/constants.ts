@@ -228,34 +228,99 @@ export const VALUE_STACK = [
 ] as const;
 
 // ─── Testimonials ─────────────────────────────────────────────────────────────
-export const TESTIMONIALS = [
+export type TestimonialSocial = {
+  platform: "instagram";
+  handle: string;
+};
+
+export type Testimonial = {
+  name: string;
+  role: string;
+  quote: string;
+  avatar: string | null;
+  social: TestimonialSocial;
+};
+
+export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Pasé de operar sin método a tener un plan claro y resultados consistentes en 3 meses.",
-    name: "Diego R.",
+    name: "Diego Rodríguez",
     role: "Trader · Madrid",
+    // TODO: reemplazar con foto real del miembro
+    avatar: "/images/santiago-cutout.png",
+    // TODO: añadir handle real
+    social: { platform: "instagram", handle: "@diego_r_trades" },
   },
   {
     quote:
       "El nivel de la gente dentro es otro deporte. Conexiones que valen más que cualquier curso.",
-    name: "Lucía M.",
+    name: "Lucía Martínez",
     role: "Founder SaaS · CDMX",
+    // TODO: reemplazar con foto real del miembro
+    avatar: "/images/santiago-cutout.png",
+    // TODO: añadir handle real
+    social: { platform: "instagram", handle: "@luciam_saas" },
   },
   {
     quote:
       "Por fin una comunidad donde se habla de capital real, no de promesas vacías.",
-    name: "Andrés P.",
+    name: "Andrés Pérez",
     role: "Inversor · Bogotá",
+    // TODO: reemplazar con foto real del miembro
+    avatar: "/images/santiago-cutout.png",
+    // TODO: añadir handle real
+    social: { platform: "instagram", handle: "@andresp_invierte" },
   },
   {
     quote:
       "Apliqué un solo framework y subí el margen de mi negocio un 40% en un trimestre.",
-    name: "Iván S.",
+    name: "Iván Soto",
     role: "Emprendedor · Buenos Aires",
+    // TODO: reemplazar con foto real del miembro
+    avatar: "/images/santiago-cutout.png",
+    // TODO: añadir handle real
+    social: { platform: "instagram", handle: "@ivans_emprende" },
   },
-] as const;
+  {
+    quote:
+      "En 6 semanas pasé de operar sin criterio a tener un sistema claro basado en Order Flow. Las sesiones en vivo son lo mejor que tiene el Inner Circle.",
+    name: "Carlos Mendoza",
+    role: "Trader independiente · Valencia",
+    avatar: null,
+    social: { platform: "instagram", handle: "@carlosmendoza_trades" },
+  },
+];
+
+// ─── Profile filter (para quién es / no es) ─────────────────────────────────
+export const PROFILE_FILTER = {
+  title: "¿ENCAJA CONTIGO?",
+  forYou: {
+    heading: "Esto es para ti si…",
+    items: [
+      "Llevas al menos 6 meses en trading o tienes un negocio generando ingresos",
+      "Quieres un método real, no señales ni copy-paste",
+      "Puedes dedicar mínimo 1–2 horas diarias al mercado o a tu proyecto",
+      "Buscas un entorno serio donde se hable de capital real",
+      "Quieres conectar con gente que ya está donde tú quieres llegar",
+    ],
+  },
+  notForYou: {
+    heading: "No es para ti si…",
+    items: [
+      "Estás buscando un curso con promesas de rentabilidad garantizada",
+      "No tienes tiempo ni capital para operar o invertir ahora mismo",
+      "Esperas resultados sin poner el trabajo",
+      "Ya sabes todo y no estás abierto a cambiar tu enfoque",
+    ],
+  },
+  cta: "Sí, encaja. Quiero aplicar →",
+} as const;
 
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
+/** Index of the pricing FAQ — expanded by default in FAQ.tsx */
+export const FAQ_PRICING_INDEX = 2;
+
 export const FAQ = [
   {
     q: "¿A quién está dirigido el Inner Circle?",
@@ -267,7 +332,7 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto cuesta entrar?",
-    a: "La inversión se comunica solo a candidatos aceptados. Filtramos primero el perfil para asegurar el nivel de la comunidad.",
+    a: "La inversión en WIA Inner Circle empieza en 297€/mes. Existe también acceso anual con condiciones especiales. El precio exacto y las condiciones se confirman tras revisar tu solicitud, ya que adaptamos el acceso al perfil de cada miembro.",
   },
   {
     q: "¿Cuánto tiempo necesito dedicarle?",
@@ -298,7 +363,17 @@ export const LEAD_CAPTURE = {
 export const URGENCY = {
   banner: "Plazas limitadas este mes · Cerramos al alcanzar el cupo",
   formNote: "30 segundos · Respuesta en minutos si encajas (horario Dubai)",
-  spotsLeft: "Quedan pocas plazas",
+  spotsAvailable: 4,
+  maxMembers: 12,
+  spotsLine: "4 plazas disponibles",
+  cupoLine: "Cupo máximo: 12 miembros",
+  formFooter:
+    "Solo aceptamos perfiles que aporten valor a la comunidad. Si no encajas ahora, te lo diremos con respeto.",
+} as const;
+
+export const FORM_COPY = {
+  incomeHint:
+    "Solo para asegurarnos de que el Inner Circle es el paso correcto para ti ahora. No hay respuesta incorrecta.",
 } as const;
 
 // ─── Form fields ──────────────────────────────────────────────────────────────
@@ -329,11 +404,16 @@ export const FOUNDER = {
   badges: [] as const,
   // Edit / añade tus credenciales reales aquí ↓
   credentials: [
-    "Empresario con varias compañías en operación",
-    "Trader profesional · metodología Order Flow desde Dubai",
+    "Fundador de Dynasty Prestige Car Rental, Villa Prestige y WIA SOFTWARE · Dubai",
+    "Trader de US30 Futures con metodología Order Flow institucional desde 2019",
+    "Más de 5 años operando mercados de alta liquidez desde Dubai",
+    "Comunidad activa de traders y emprendedores hispanohablantes en 4 países",
   ],
   intro:
     "Santiago es trader profesional y dirige varias empresas desde Dubai. Combina trading, tecnología y negocios, y construye WIA Inner Circle como el entorno que él hubiera querido tener cuando empezó.",
+  closingQuote:
+    "Construí WIA Inner Circle porque no existía en español un entorno serio donde traders y emprendedores reales compartieran lo que funciona. Sin gurús. Sin promesas. Solo resultados.",
+  closingAttribution: "— Santiago, Fundador",
 } as const;
 
 // ─── Exit intent message ──────────────────────────────────────────────────────
