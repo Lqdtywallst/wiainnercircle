@@ -101,6 +101,62 @@ input:-webkit-autofill:focus {
     display: block;
   }
 
+  /* Interstitial / cinematic video — fills section edge-to-edge */
+  .interstitial-media {
+    position: absolute;
+    inset: -12%;
+    z-index: 0;
+    overflow: hidden;
+    background: #050505;
+  }
+  .interstitial-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  @media (max-width: 767px) {
+    .interstitial-media video {
+      object-position: center 36%;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .interstitial-media video {
+      object-position: center 42%;
+    }
+  }
+
+  /* Statement fullscreen parallax — fills viewport edge-to-edge */
+  .statement-media {
+    position: absolute;
+    inset: -12%;
+    z-index: 0;
+    overflow: hidden;
+    background: #050505;
+  }
+  .statement-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+
+  @media (max-width: 767px) {
+    .statement-media img {
+      object-position: center 40%;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .statement-media img {
+      object-position: center 45%;
+    }
+  }
+
   /* CTA button */
   .btn-lime {
     display: inline-block;

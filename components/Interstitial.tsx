@@ -7,21 +7,18 @@ import { VIDEOS } from "@/lib/constants";
 export default function Interstitial() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
     <section
       ref={ref}
       aria-label="Dubai lifestyle"
-      className="relative h-[70vh] overflow-hidden
-                 max-md:h-[60svh] max-md:min-h-[440px]
-                 max-sm:min-h-[380px]"
+      className="relative w-full overflow-hidden
+                 h-[clamp(420px,70vh,860px)]
+                 max-md:h-[clamp(360px,55svh,620px)]
+                 max-sm:h-[clamp(300px,50svh,480px)]"
     >
-      {/* Parallax video */}
-      <motion.div
-        style={{ y }}
-        className="media-parallax absolute inset-0 z-0 flex items-center justify-center bg-[#050505]"
-      >
+      <motion.div style={{ y }} className="interstitial-media">
         <video
           src={VIDEOS.lamboDay.src}
           poster={VIDEOS.lamboDay.poster}
@@ -31,13 +28,12 @@ export default function Interstitial() {
           playsInline
           preload="metadata"
           aria-hidden="true"
-          className="max-h-full max-w-full"
         />
       </motion.div>
 
-      {/* Overlays */}
       <div className="absolute inset-0 bg-[#050505]/45 z-[1]" />
-      <div className="absolute bottom-0 inset-x-0 h-52 bg-gradient-to-t from-[#050505] to-transparent z-[2]" />
+      <div className="absolute bottom-0 inset-x-0 h-52 bg-gradient-to-t from-[#050505] to-transparent z-[2]
+                      max-md:h-40 max-sm:h-32" />
     </section>
   );
 }

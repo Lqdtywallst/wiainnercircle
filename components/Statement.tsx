@@ -14,34 +14,28 @@ export default function Statement() {
     target: ref,
     offset: ["start end", "end start"],
   });
-  // Subtle parallax: photo moves slightly as you scroll
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
     <section
       ref={ref}
       aria-label="Declaración"
-      className="relative min-h-screen min-h-[100svh] overflow-hidden flex items-center justify-center
-                 max-sm:min-h-[82svh]"
+      className="relative w-full overflow-hidden flex items-center justify-center
+                 h-[clamp(520px,100svh,960px)]
+                 max-md:h-[clamp(460px,92svh,820px)]
+                 max-sm:h-[clamp(400px,82svh,680px)]"
     >
-      {/* Parallax background */}
-      <motion.div
-        style={{ y }}
-        className="media-parallax absolute inset-0 z-0 flex items-center justify-center bg-[#050505]"
-      >
+      <motion.div style={{ y }} className="statement-media">
         <img
           src={IMAGES.steeringWheel}
           alt="Lamborghini STO steering wheel con Rolex"
-          className="max-h-full max-w-full"
           loading="lazy"
         />
       </motion.div>
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-[#050505]/60 z-[1]" />
 
-      {/* Text */}
-      <div className="relative z-[2] text-center px-7">
+      <div className="relative z-[2] text-center px-7 max-sm:px-[18px]">
         <motion.p
           variants={fadeUp(0)}
           initial="hidden"
