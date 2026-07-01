@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import PricingBlock from "@/components/PricingBlock";
 import {
   INCOME_OPTIONS,
   URGENCY,
@@ -133,7 +134,7 @@ export default function Form() {
         animate={inView ? "visible" : "hidden"}
         className="w-full max-w-[620px] mb-7"
       >
-        <p className="urgency-strip rounded-md">{URGENCY.banner}</p>
+        <PricingBlock variant="form" />
       </motion.div>
 
       <motion.form

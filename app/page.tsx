@@ -2,6 +2,8 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Results from "@/components/Results";
 import ValueStack from "@/components/ValueStack";
+import Pricing from "@/components/Pricing";
+import Checkout from "@/components/Checkout";
 import Statement from "@/components/Statement";
 import Founder from "@/components/Founder";
 import LeadCapture from "@/components/LeadCapture";
@@ -22,6 +24,8 @@ export default function Home() {
       <Hero />
       <Results />
       <ValueStack />
+      <Pricing />
+      <Checkout />
       <Statement />
       <Founder />
       <LeadCapture />

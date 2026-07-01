@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   RESPONSE_SLA,
   TELEGRAM_COMMUNITY,
   THANK_YOU,
+  THANK_YOU_CHECKOUT,
   WHATSAPP,
   whatsappUrl,
 } from "@/lib/constants";
@@ -13,13 +15,19 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
 export default function ThankYou() {
+  const searchParams = useSearchParams();
+  const isCheckout = searchParams.get("tipo") === "checkout";
+  const copy = isCheckout ? THANK_YOU_CHECKOUT : THANK_YOU;
+
   useEffect(() => {
-    track("Lead", { stage: "thank-you-view" });
-  }, []);
+    track("Lead", {
+      stage: isCheckout ? "checkout-success" : "thank-you-view",
+    });
+  }, [isCheckout]);
 
   return (
     <section
-      aria-label="Solicitud recibida"
+      aria-label={isCheckout ? "Pago confirmado" : "Solicitud recibida"}
       className="bg-[#050505] section-pad pt-[180px] flex flex-col items-center
                  max-md:section-pad-sm max-md:pt-[140px]"
     >
@@ -30,7 +38,7 @@ export default function ThankYou() {
         className="text-center max-w-[680px] mb-16 max-sm:mb-10"
       >
         <motion.p variants={fadeUp()} className="label mb-7">
-          {THANK_YOU.eyebrow}
+          {copy.eyebrow}
         </motion.p>
         <motion.h1
           variants={fadeUp()}
@@ -38,9 +46,19 @@ export default function ThankYou() {
                      tracking-[0.03em] text-white mb-7
                      max-sm:text-[clamp(46px,15vw,68px)]"
         >
-          BIENVENIDO AL
-          <br />
-          <span className="text-lime">PRIMER FILTRO.</span>
+          {isCheckout ? (
+            <>
+              {THANK_YOU_CHECKOUT.title}
+              <br />
+              <span className="text-lime">{THANK_YOU_CHECKOUT.titleAccent}</span>
+            </>
+          ) : (
+            <>
+              BIENVENIDO AL
+              <br />
+              <span className="text-lime">PRIMER FILTRO.</span>
+            </>
+          )}
         </motion.h1>
         <motion.p
           variants={fadeUp()}
@@ -48,12 +66,12 @@ export default function ThankYou() {
                      leading-[1.8] tracking-[0.02em] mx-auto
                      max-sm:text-[14px]"
         >
-          {THANK_YOU.body}
+          {copy.body}
         </motion.p>
       </motion.div>
 
       {/* Primary action: calendar or WhatsApp */}
-      {THANK_YOU.calendarUrl ? (
+      {!isCheckout && THANK_YOU.calendarUrl ? (
         <motion.div
           variants={fadeUp()}
           initial="hidden"
@@ -86,25 +104,34 @@ export default function ThankYou() {
                      rounded-[18px] p-8 max-sm:p-6"
         >
           <p className="font-bebas text-[22px] tracking-[0.06em] text-white mb-3">
-            Siguiente paso: habla con Santiago
+            {isCheckout ? "Siguiente paso: activa tu acceso" : "Siguiente paso: habla con Santiago"}
           </p>
           <p className="font-inter text-[13px] font-light text-white/50 mb-6 leading-[1.7]">
-            Escríbenos por WhatsApp ahora y adelanta la conversación. {RESPONSE_SLA.promiseShort}.
+            {isCheckout
+              ? "Escríbenos por WhatsApp con tu email de pago y te enviamos los accesos."
+              : `Escríbenos por WhatsApp ahora y adelanta la conversación. ${RESPONSE_SLA.promiseShort}.`}
           </p>
           <a
             href={whatsappUrl(
-              "Hola Santiago, acabo de aplicar al Inner Circle y me gustaría adelantar la conversación."
+              isCheckout
+                ? "Hola Santiago, acabo de pagar el acceso al Inner Circle por Stripe. ¿Me confirmas los siguientes pasos?"
+                : "Hola Santiago, acabo de aplicar al Inner Circle y me gustaría adelantar la conversación."
             )}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-lime"
-            onClick={() => track("ClickWhatsApp", { source: "thank-you-primary" })}
+            onClick={() =>
+              track("ClickWhatsApp", {
+                source: isCheckout ? "thank-you-checkout" : "thank-you-primary",
+              })
+            }
           >
             {THANK_YOU.whatsappPrompt}
           </a>
         </motion.div>
       )}
 
+      {!isCheckout ? (
       <motion.ol
         variants={staggerContainer(0.1)}
         initial="hidden"
@@ -130,6 +157,7 @@ export default function ThankYou() {
           </motion.li>
         ))}
       </motion.ol>
+      ) : null}
 
       <motion.div
         variants={fadeUp(0.1)}
@@ -137,7 +165,7 @@ export default function ThankYou() {
         animate="visible"
         className="flex flex-col items-center gap-4 text-center"
       >
-        {THANK_YOU.calendarUrl ? (
+        {THANK_YOU.calendarUrl && !isCheckout ? (
           <a
             href={whatsappUrl(
               "Hola Santiago, acabo de aplicar al Inner Circle y me gustaría adelantar la conversación."

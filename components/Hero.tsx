@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import PricingBlock from "@/components/PricingBlock";
 import { BRAND, DISCIPLINES, IMAGES, MEDIA_FOCUS, RESPONSE_SLA, TELEGRAM_COMMUNITY, WHATSAPP, focusStyle, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn } from "@/lib/motion";
 import { track } from "@/lib/tracking";
@@ -47,6 +48,17 @@ export default function Hero() {
           AQUÍ.
         </motion.h1>
 
+        <motion.div
+          variants={fadeUp(0.18)}
+          initial="hidden"
+          animate="visible"
+          className="mt-10 mb-0 max-sm:mt-7"
+        >
+          <a href="#comprar" onClick={() => track("ClickCTA", { source: "hero-pricing" })}>
+            <PricingBlock variant="hero" className="transition-opacity hover:opacity-90" />
+          </a>
+        </motion.div>
+
         {/* Discipline tags */}
         <motion.div
           variants={fadeUp(0.26)}
@@ -74,20 +86,18 @@ export default function Hero() {
           className="mt-11 max-sm:mt-8 flex flex-wrap items-center gap-4"
         >
           <a
-            href="#contacto-rapido"
+            href="#comprar"
             className="btn-lime"
             onClick={() => track("ClickCTA", { source: "hero-primary" })}
           >
-            {BRAND.whatsappCta}
+            Comprar acceso
           </a>
           <a
-            href={whatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contacto-rapido"
             className="btn-ghost max-sm:hidden"
-            onClick={() => track("ClickWhatsApp", { source: "hero" })}
+            onClick={() => track("ClickCTA", { source: "hero-apply" })}
           >
-            {WHATSAPP.label}
+            {BRAND.whatsappCta}
           </a>
           {TELEGRAM_COMMUNITY.url ? (
             <a

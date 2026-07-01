@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -14,7 +15,9 @@ export default function GraciasPage() {
   return (
     <main>
       <Nav />
-      <ThankYou />
+      <Suspense fallback={null}>
+        <ThankYou />
+      </Suspense>
       <Footer />
     </main>
   );

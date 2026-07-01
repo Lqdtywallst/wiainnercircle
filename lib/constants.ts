@@ -178,6 +178,8 @@ export const FAVICONS = {
 export const NAV_LINKS = [
   { label: "Método",     href: "#resultados" },
   { label: "Dentro",     href: "#dentro" },
+  { label: "Inversión",  href: "#precio" },
+  { label: "Comprar",    href: "#comprar" },
   { label: "Comunidad",  href: "#testimonios" },
   { label: "FAQ",        href: "#faq" },
   { label: "Acceso",     href: "#acceso" },
@@ -255,7 +257,68 @@ export const TESTIMONIALS = [
   },
 ] as const;
 
+// ─── Pricing (edit here — all copy pulls from these values) ───────────────────
+export const PRICING = {
+  monthly: 497,
+  annual: 4970,
+  currency: "€",
+  monthlyLabel: "497 €/mes",
+  annualLabel: "4.970 €/año",
+  annualNote: "2 meses incluidos",
+  anchorShort: "Desde 497 €/mes",
+  displayMonthly: "497 €",
+  displayPeriod: "/mes",
+  sectionEyebrow: "Inversión",
+  sectionTitle: "PRECIO DE ACCESO.",
+  sectionBody:
+    "Comunidad privada · mastermind · no es un curso masivo. Acceso por solicitud.",
+  formNote: "Condiciones finales tras revisar tu solicitud",
+  faqAnswer:
+    "La inversión en WIA Inner Circle es de 497 €/mes. También existe acceso anual por 4.970 € (2 meses incluidos). Puedes pagar directamente con tarjeta en la sección Comprar (Stripe) o aplicar antes si prefieres hablar con nosotros.",
+} as const;
+
+// ─── Stripe checkout ───────────────────────────────────────────────────────────
+export type CheckoutPlan = "monthly" | "annual";
+
+export const CHECKOUT = {
+  eyebrow: "Acceso inmediato",
+  title: "COMPRAR ACCESO.",
+  subtitle: "Pago seguro con Stripe · activación tras confirmar el pago",
+  stripeBadge: "Pago cifrado · procesado por Stripe",
+  fallback:
+    "El checkout con tarjeta se activa en cuanto conectemos Stripe. Mientras tanto, aplica por el formulario o escríbenos por WhatsApp.",
+  applyAlt: "Prefiero aplicar primero →",
+  plans: {
+    monthly: {
+      id: "monthly" as const,
+      name: "Mensual",
+      price: PRICING.monthlyLabel,
+      detail: "Renovación automática · cancela cuando quieras",
+      cta: "Pagar con Stripe",
+    },
+    annual: {
+      id: "annual" as const,
+      name: "Anual",
+      price: PRICING.annualLabel,
+      detail: PRICING.annualNote,
+      badge: "Mejor valor",
+      cta: "Pagar con Stripe",
+    },
+  },
+} as const;
+
+export const THANK_YOU_CHECKOUT = {
+  eyebrow: "Pago confirmado",
+  title: "BIENVENIDO",
+  titleAccent: "AL INNER CIRCLE.",
+  body:
+    "Tu pago se ha procesado correctamente. En breve recibirás los accesos y el siguiente paso por email. Si necesitas algo ahora, escríbenos por WhatsApp.",
+} as const;
+
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
+/** Pricing question index — expanded by default in FAQ.tsx */
+export const FAQ_PRICING_INDEX = 2;
+
 export const FAQ = [
   {
     q: "¿A quién está dirigido el Inner Circle?",
@@ -267,7 +330,7 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto cuesta entrar?",
-    a: "La inversión se comunica solo a candidatos aceptados. Filtramos primero el perfil para asegurar el nivel de la comunidad.",
+    a: PRICING.faqAnswer,
   },
   {
     q: "¿Cuánto tiempo necesito dedicarle?",
@@ -296,9 +359,9 @@ export const LEAD_CAPTURE = {
 
 // ─── Urgency ──────────────────────────────────────────────────────────────────
 export const URGENCY = {
-  banner: "Plazas limitadas este mes · Cerramos al alcanzar el cupo",
+  banner: `${PRICING.anchorShort} · Anual ${PRICING.annualLabel} (${PRICING.annualNote})`,
   formNote: "30 segundos · Respuesta en minutos si encajas (horario Dubai)",
-  spotsLeft: "Quedan pocas plazas",
+  spotsLeft: "Plazas limitadas · Cupo cerrado",
 } as const;
 
 // ─── Form fields ──────────────────────────────────────────────────────────────

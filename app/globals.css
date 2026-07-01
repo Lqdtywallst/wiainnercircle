@@ -340,6 +340,37 @@ input:-webkit-autofill:focus {
     padding: 14px 20px;
   }
 
+  /* Pricing display — hero / section / form */
+  .pricing-block {
+    border: 1px solid rgba(214, 255, 0, 0.22);
+    background: rgba(214, 255, 0, 0.04);
+  }
+  .pricing-block__amount {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    color: #D6FF00;
+  }
+  .pricing-block__period {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .pricing-block__annual {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .pricing-block__note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
   /* FAQ */
   .faq-item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
