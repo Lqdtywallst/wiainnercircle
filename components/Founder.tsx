@@ -113,17 +113,6 @@ export default function Founder() {
           ))}
         </motion.ul>
 
-        <motion.blockquote
-          variants={fadeUp()}
-          className="font-inter text-sm text-white/40 max-w-[520px] mb-11 max-sm:mb-9
-                     border-l border-white/10 pl-5 leading-[1.75]"
-        >
-          <p className="mb-2">{FOUNDER.closingQuote}</p>
-          <footer className="text-white/30 not-italic text-xs tracking-[0.06em]">
-            {FOUNDER.closingAttribution}
-          </footer>
-        </motion.blockquote>
-
         <motion.div
           variants={fadeUp()}
           className="flex flex-wrap items-center gap-5"
