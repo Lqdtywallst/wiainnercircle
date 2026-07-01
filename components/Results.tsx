@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { IMAGES, STATS, MICRO_CTAS, WHATSAPP, whatsappUrl } from "@/lib/constants";
+import { IMAGES, MEDIA_FOCUS, STATS, MICRO_CTAS, WHATSAPP, focusStyle, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -24,7 +24,8 @@ export default function Results() {
         variants={scaleIn(0)}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="photo-frame relative flex items-center justify-center
+        style={focusStyle(MEDIA_FOCUS.lamboNight)}
+        className="photo-frame photo-focused relative flex items-center justify-center
                    aspect-[4/5] max-md:aspect-auto max-md:order-2 max-md:w-full"
       >
         <img

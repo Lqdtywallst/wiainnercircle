@@ -2,7 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { IMAGES, MICRO_CTAS } from "@/lib/constants";
+import { IMAGES, MEDIA_FOCUS, MICRO_CTAS, focusStyle } from "@/lib/constants";
 import { fadeUp } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -25,7 +25,10 @@ export default function Statement() {
                  max-md:h-[clamp(460px,92svh,820px)]
                  max-sm:h-[clamp(400px,82svh,680px)]"
     >
-      <motion.div style={{ y }} className="statement-media">
+      <motion.div
+        style={{ y, ...focusStyle(MEDIA_FOCUS.steeringWheel) }}
+        className="statement-media"
+      >
         <img
           src={IMAGES.steeringWheel}
           alt="Lamborghini STO steering wheel con Rolex"

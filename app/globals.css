@@ -91,6 +91,26 @@ input:-webkit-autofill:focus {
     display: block;
   }
 
+  /* Responsive object-position from CSS vars (see MEDIA_FOCUS in constants) */
+  .photo-focused img,
+  .photo-focused video {
+    object-position: var(--focus-default, center);
+  }
+
+  @media (max-width: 767px) {
+    .photo-focused img,
+    .photo-focused video {
+      object-position: var(--focus-md, var(--focus-default, center));
+    }
+  }
+
+  @media (max-width: 479px) {
+    .photo-focused img,
+    .photo-focused video {
+      object-position: var(--focus-sm, var(--focus-md, var(--focus-default, center)));
+    }
+  }
+
   /* Fullscreen parallax media — show complete image/video */
   .media-parallax img,
   .media-parallax video {
@@ -104,7 +124,7 @@ input:-webkit-autofill:focus {
   /* Interstitial / cinematic video — fills section edge-to-edge */
   .interstitial-media {
     position: absolute;
-    inset: -12%;
+    inset: -6%;
     z-index: 0;
     overflow: hidden;
     background: #050505;
@@ -113,26 +133,26 @@ input:-webkit-autofill:focus {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: var(--focus-default, center);
     display: block;
   }
 
   @media (max-width: 767px) {
     .interstitial-media video {
-      object-position: center 36%;
+      object-position: var(--focus-md, var(--focus-default, center));
     }
   }
 
   @media (max-width: 479px) {
     .interstitial-media video {
-      object-position: center 42%;
+      object-position: var(--focus-sm, var(--focus-md, var(--focus-default, center)));
     }
   }
 
   /* Statement fullscreen parallax — fills viewport edge-to-edge */
   .statement-media {
     position: absolute;
-    inset: -12%;
+    inset: -8%;
     z-index: 0;
     overflow: hidden;
     background: #050505;
@@ -141,19 +161,21 @@ input:-webkit-autofill:focus {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    object-position: var(--focus-default, center);
     display: block;
   }
 
   @media (max-width: 767px) {
+    .interstitial-media video,
     .statement-media img {
-      object-position: center 40%;
+      object-position: var(--focus-md, var(--focus-default, center));
     }
   }
 
   @media (max-width: 479px) {
+    .interstitial-media video,
     .statement-media img {
-      object-position: center 45%;
+      object-position: var(--focus-sm, var(--focus-md, var(--focus-default, center)));
     }
   }
 

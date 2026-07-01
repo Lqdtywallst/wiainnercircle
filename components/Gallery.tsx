@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { IMAGES } from "@/lib/constants";
+import { IMAGES, MEDIA_FOCUS, focusStyle } from "@/lib/constants";
 import { scaleIn } from "@/lib/motion";
 
 const photos = [
@@ -10,16 +10,19 @@ const photos = [
     src: IMAGES.urus,
     alt: "Lamborghini Urus turquesa Dubai",
     gridClass: "col-span-7 row-span-2",
+    focus: MEDIA_FOCUS.urus,
   },
   {
     src: IMAGES.lamboSto,
     alt: "Lamborghini Huracán STO parking Dubai",
     gridClass: "col-span-5 row-span-1",
+    focus: MEDIA_FOCUS.lamboSto,
   },
   {
     src: IMAGES.deskDay,
     alt: "Santiago en su desk con vista a Dubai",
     gridClass: "col-span-5 row-span-1",
+    focus: MEDIA_FOCUS.deskDay,
   },
 ] as const;
 
@@ -52,13 +55,14 @@ export default function Gallery() {
           gridTemplateRows: "minmax(300px, 38vh) minmax(280px, 34vh)",
         }}
       >
-        {photos.map(({ src, alt, gridClass }, i) => (
+        {photos.map(({ src, alt, gridClass, focus }, i) => (
           <motion.div
             key={alt}
             variants={scaleIn(i * 0.08)}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className={`photo-frame flex items-center justify-center ${gridClass}`}
+            style={focusStyle(focus)}
+            className={`photo-frame photo-focused flex items-center justify-center ${gridClass}`}
           >
             <img src={src} alt={alt} loading="lazy" />
           </motion.div>
@@ -67,13 +71,14 @@ export default function Gallery() {
 
       {/* Mobile: stack — natural height, full photo visible */}
       <div className="md:hidden flex flex-col gap-3 max-sm:gap-2.5">
-        {photos.map(({ src, alt }, i) => (
+        {photos.map(({ src, alt, focus }, i) => (
           <motion.div
             key={alt}
             variants={scaleIn(i * 0.08)}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="photo-frame-fluid"
+            style={focusStyle(focus)}
+            className="photo-frame-fluid photo-focused"
           >
             <img src={src} alt={alt} loading="lazy" />
           </motion.div>

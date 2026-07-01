@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BRAND, DISCIPLINES, IMAGES, RESPONSE_SLA, TELEGRAM_COMMUNITY, WHATSAPP, whatsappUrl } from "@/lib/constants";
+import { BRAND, DISCIPLINES, IMAGES, MEDIA_FOCUS, RESPONSE_SLA, TELEGRAM_COMMUNITY, WHATSAPP, focusStyle, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -119,7 +119,8 @@ export default function Hero() {
         variants={scaleIn(0.15)}
         initial="hidden"
         animate="visible"
-        className="photo-frame relative flex items-center justify-center
+        style={focusStyle(MEDIA_FOCUS.hero)}
+        className="photo-frame photo-focused relative flex items-center justify-center
                    h-[88vh] max-md:h-auto max-md:min-h-0 max-md:w-full"
       >
         <img

@@ -102,6 +102,51 @@ export const VIDEOS = {
   },
 } as const;
 
+// ─── Media focus (object-position per asset) ─────────────────────────────────
+export type MediaFocus = {
+  default: string;
+  md?: string;
+  sm?: string;
+};
+
+/** Encuadre de fotos/video — editar aquí para recentrar sin tocar componentes. */
+export const MEDIA_FOCUS = {
+  /** Volante + Rolex — cockpit centrado detrás del headline */
+  steeringWheel: {
+    default: "50% 46%",
+    md: "50% 42%",
+    sm: "50% 38%",
+  },
+  /** Video POV conduciendo — volante + salpicadero + carretera */
+  lamboDayVideo: {
+    default: "46% 54%",
+    md: "48% 50%",
+    sm: "50% 46%",
+  },
+  /** Santiago de pie en terraza — cuerpo completo */
+  hero: {
+    default: "50% 32%",
+    md: "50% 38%",
+    sm: "50% 42%",
+  },
+  /** Lambo rojo de noche — coche + edificio */
+  lamboNight: {
+    default: "50% 58%",
+    md: "50% 54%",
+    sm: "50% 50%",
+  },
+  urus: { default: "50% 48%", md: "50% 50%" },
+  lamboSto: { default: "50% 45%" },
+  deskDay: { default: "50% 38%" },
+} as const satisfies Record<string, MediaFocus>;
+
+export function focusStyle(focus: MediaFocus): Record<string, string> {
+  const vars: Record<string, string> = { "--focus-default": focus.default };
+  if (focus.md) vars["--focus-md"] = focus.md;
+  if (focus.sm) vars["--focus-sm"] = focus.sm;
+  return vars;
+}
+
 // ─── Site URL (used for absolute OG / social images) ──────────────────────────
 // En Vercel se sobreescribe con NEXT_PUBLIC_SITE_URL (con o sin https).
 function resolveSiteUrl(): string {
