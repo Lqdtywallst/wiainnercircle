@@ -190,17 +190,25 @@ export const DISCIPLINES = ["Negocios", "Trading", "Inversiones", "Mentalidad"] 
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
 export const STATS = [
+  { value: "2×1h",       label: "Trading en vivo / semana" },
   { value: "Order Flow", label: "Metodología" },
-  { value: "Real",       label: "Gestión de capital real" },
   { value: "Privado",    label: "Acceso exclusivo" },
 ] as const;
+
+// ─── Oferta principal (trading en vivo) ───────────────────────────────────────
+export const LIVE_TRADING = {
+  schedule: "1 hora · 2 días a la semana",
+  scheduleShort: "2 sesiones/semana · 1h en vivo",
+  headline: "Trading en vivo con Order Flow",
+  description:
+    "Operamos en directo durante 1 hora, dos días a la semana. Mercados reales, metodología institucional, cero relleno.",
+} as const;
 
 // ─── Value stack — qué encuentras dentro ──────────────────────────────────────
 export const VALUE_STACK = [
   {
     title: "Sala de Trading en Vivo",
-    body:
-      "Sesiones diarias operando Order Flow real en mercados líquidos. Sin teoría barata.",
+    body: LIVE_TRADING.description,
   },
   {
     title: "Mentoría Directa",
@@ -271,10 +279,10 @@ export const PRICING = {
   sectionEyebrow: "Inversión",
   sectionTitle: "PRECIO DE ACCESO.",
   sectionBody:
-    "Comunidad privada · mastermind · no es un curso masivo. Acceso por solicitud.",
+    `${LIVE_TRADING.scheduleShort} · comunidad privada · acceso por solicitud o pago directo.`,
   formNote: "Condiciones finales tras revisar tu solicitud",
   faqAnswer:
-    "La inversión en WIA Inner Circle es de 497 €/mes. También existe acceso anual por 4.970 € (2 meses incluidos). Puedes pagar directamente con tarjeta en la sección Comprar (Stripe) o aplicar antes si prefieres hablar con nosotros.",
+    `La inversión en WIA Inner Circle es de 497 €/mes. También existe acceso anual por 4.970 € (2 meses incluidos). Incluye ${LIVE_TRADING.scheduleShort.toLowerCase()} de trading en vivo. Puedes pagar con tarjeta en Comprar (Stripe) o aplicar antes si prefieres hablar con nosotros.`,
 } as const;
 
 // ─── Stripe checkout ───────────────────────────────────────────────────────────
@@ -283,7 +291,7 @@ export type CheckoutPlan = "monthly" | "annual";
 export const CHECKOUT = {
   eyebrow: "Acceso inmediato",
   title: "COMPRAR ACCESO.",
-  subtitle: "Pago seguro con Stripe · activación tras confirmar el pago",
+  subtitle: `${LIVE_TRADING.schedule} · pago seguro con Stripe`,
   stripeBadge: "Pago cifrado · procesado por Stripe",
   fallback:
     "El checkout con tarjeta se activa en cuanto conectemos Stripe. Mientras tanto, aplica por el formulario o escríbenos por WhatsApp.",
@@ -293,14 +301,14 @@ export const CHECKOUT = {
       id: "monthly" as const,
       name: "Mensual",
       price: PRICING.monthlyLabel,
-      detail: "Renovación automática · cancela cuando quieras",
+      detail: `${LIVE_TRADING.schedule} · renovación automática`,
       cta: "Pagar con Stripe",
     },
     annual: {
       id: "annual" as const,
       name: "Anual",
       price: PRICING.annualLabel,
-      detail: PRICING.annualNote,
+      detail: `${LIVE_TRADING.schedule} · ${PRICING.annualNote}`,
       badge: "Mejor valor",
       cta: "Pagar con Stripe",
     },
@@ -334,7 +342,7 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto tiempo necesito dedicarle?",
-    a: "Recomendamos mínimo 5 horas semanales. La comunidad está diseñada para personas ocupadas que valoran su tiempo.",
+    a: `El núcleo son ${LIVE_TRADING.schedule.toLowerCase()} de trading en vivo (${LIVE_TRADING.scheduleShort.toLowerCase()}). Fuera de eso, recomendamos practicar y repasar a tu ritmo — diseñado para gente ocupada.`,
   },
   {
     q: "¿Hay garantía o devolución?",
@@ -342,7 +350,7 @@ export const FAQ = [
   },
   {
     q: "¿En qué se diferencia de otros cursos o señales?",
-    a: "No vendemos cursos ni señales. Es una comunidad cerrada con mentoría directa, capital real en juego y networking de alto nivel desde Dubai.",
+    a: `No vendemos cursos ni señales. Es una comunidad cerrada: ${LIVE_TRADING.headline.toLowerCase()} (${LIVE_TRADING.schedule.toLowerCase()}), mentoría directa y networking de alto nivel desde Dubai.`,
   },
 ] as const;
 

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { VALUE_STACK, MICRO_CTAS } from "@/lib/constants";
+import { LIVE_TRADING, VALUE_STACK, MICRO_CTAS } from "@/lib/constants";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -37,6 +37,14 @@ export default function ValueStack() {
           <br />
           NO UN CURSO.
         </motion.h2>
+
+        <motion.p
+          variants={fadeUp()}
+          className="font-inter text-[14px] font-light text-white/45 -mt-10 mb-16
+                     max-sm:-mt-6 max-sm:mb-10"
+        >
+          {LIVE_TRADING.headline} · {LIVE_TRADING.schedule}
+        </motion.p>
 
         <div className="grid grid-cols-3 gap-10 max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-7">
           {VALUE_STACK.map(({ title, body }, i) => (

@@ -33,5 +33,17 @@ export function priceIdForPlan(plan: CheckoutPlan): string {
     throw new Error(`Stripe price ID missing for plan: ${plan}`);
   }
 
+  if (id.startsWith("prod_")) {
+    throw new Error(
+      `Variable STRIPE_PRICE_${plan === "annual" ? "ANNUAL" : "MONTHLY"} usa un Product ID (${id}). En Vercel debes poner el Price ID (empieza por price_), no prod_.`
+    );
+  }
+
+  if (!id.startsWith("price_")) {
+    throw new Error(
+      `STRIPE_PRICE_${plan === "annual" ? "ANNUAL" : "MONTHLY"} debe empezar por price_. Valor actual: ${id}`
+    );
+  }
+
   return id;
 }
