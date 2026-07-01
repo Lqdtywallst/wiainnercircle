@@ -60,15 +60,44 @@ input:-webkit-autofill:focus {
   .section-pad { padding: 160px 52px; }
   .section-pad-sm { padding: 96px 24px; }
 
-  /* Rounded photo frame */
+  /* Rounded photo frame — full image visible (no crop) */
   .photo-frame {
     border-radius: 20px;
     overflow: hidden;
+    background: #050505;
   }
-  .photo-frame img {
+  .photo-frame img,
+  .photo-frame video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  /* Stack layout: natural height on mobile / fluid blocks */
+  .photo-frame-fluid {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #050505;
+  }
+  .photo-frame-fluid img,
+  .photo-frame-fluid video {
+    width: 100%;
+    height: auto;
+    max-height: min(72vh, 820px);
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  /* Fullscreen parallax media — show complete image/video */
+  .media-parallax img,
+  .media-parallax video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
     display: block;
   }
 

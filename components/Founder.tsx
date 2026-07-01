@@ -22,8 +22,8 @@ export default function Founder() {
         variants={scaleIn(0)}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative aspect-[4/5] flex items-end justify-center
-                   max-md:order-1 max-md:w-full max-sm:aspect-[3/4]"
+        className="relative aspect-[4/5] flex items-end justify-center bg-[#050505]
+                   max-md:aspect-auto max-md:items-center max-md:order-1 max-md:w-full"
       >
         <div
           aria-hidden
@@ -42,6 +42,7 @@ export default function Founder() {
           src={FOUNDER.image}
           alt={`${FOUNDER.name} — ${FOUNDER.role}`}
           className="relative w-full h-full object-contain object-bottom
+                     max-md:object-center max-md:!h-auto max-md:!max-h-[min(75vh,900px)]
                      drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
           loading="lazy"
         />

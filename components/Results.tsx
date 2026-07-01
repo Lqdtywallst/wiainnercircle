@@ -24,13 +24,13 @@ export default function Results() {
         variants={scaleIn(0)}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="photo-frame aspect-[4/5] relative max-md:order-2 max-md:w-full
-                   max-sm:aspect-[3/4]"
+        className="photo-frame relative flex items-center justify-center
+                   aspect-[4/5] max-md:aspect-auto max-md:order-2 max-md:w-full"
       >
         <img
           src={IMAGES.lamboNight}
           alt="Lamborghini Huracán STO de noche en Dubai Marina"
-          className="w-full h-full object-cover object-[center_60%]"
+          className="max-md:!h-auto max-md:!max-h-[min(72vh,820px)]"
           loading="lazy"
         />
         {/* Subtle lime border glow */}

@@ -119,19 +119,16 @@ export default function Hero() {
         variants={scaleIn(0.15)}
         initial="hidden"
         animate="visible"
-        className="photo-frame relative h-[88vh]
-                   max-md:h-auto max-md:aspect-[4/5] max-md:w-full
-                   max-sm:aspect-[3/4]"
+        className="photo-frame relative flex items-center justify-center
+                   h-[88vh] max-md:h-auto max-md:min-h-0 max-md:w-full"
       >
         <img
           src={IMAGES.hero}
           alt="Santiago en terraza Dubai Marina"
-          className="w-full h-full object-cover object-[center_top] max-md:object-[center_20%]"
+          className="max-md:max-h-[min(72vh,820px)] max-md:h-auto max-md:w-full"
           loading="eager"
           fetchPriority="high"
         />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#050505] to-transparent max-sm:h-24" />
       </motion.div>
     </section>
   );

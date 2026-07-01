@@ -10,22 +10,16 @@ const photos = [
     src: IMAGES.urus,
     alt: "Lamborghini Urus turquesa Dubai",
     gridClass: "col-span-7 row-span-2",
-    position: "object-[center_60%]",
-    mobileAspect: "aspect-[4/5]",
   },
   {
     src: IMAGES.lamboSto,
     alt: "Lamborghini Huracán STO parking Dubai",
     gridClass: "col-span-5 row-span-1",
-    position: "object-center",
-    mobileAspect: "aspect-[4/3]",
   },
   {
     src: IMAGES.deskDay,
     alt: "Santiago en su desk con vista a Dubai",
     gridClass: "col-span-5 row-span-1",
-    position: "object-[center_top]",
-    mobileAspect: "aspect-[4/3]",
   },
 ] as const;
 
@@ -41,7 +35,6 @@ export default function Gallery() {
       className="bg-[#050505] px-[52px] py-[120px]
                  max-md:px-6 max-md:py-20 max-sm:px-[18px] max-sm:py-16"
     >
-      {/* Label */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -52,45 +45,37 @@ export default function Gallery() {
         El Entorno
       </motion.p>
 
-      {/* Desktop grid: 12 cols × 2 rows */}
+      {/* Desktop: 12-col grid — contain inside cells */}
       <div
-        className="hidden md:grid grid-cols-12 grid-rows-2 gap-[14px]"
-        style={{ gridTemplateRows: "340px 340px" }}
+        className="hidden md:grid grid-cols-12 gap-[14px]"
+        style={{
+          gridTemplateRows: "minmax(300px, 38vh) minmax(280px, 34vh)",
+        }}
       >
-        {photos.map(({ src, alt, gridClass, position }, i) => (
+        {photos.map(({ src, alt, gridClass }, i) => (
           <motion.div
             key={alt}
             variants={scaleIn(i * 0.08)}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className={`photo-frame ${gridClass}`}
+            className={`photo-frame flex items-center justify-center ${gridClass}`}
           >
-            <img
-              src={src}
-              alt={alt}
-              className={`w-full h-full object-cover ${position}`}
-              loading="lazy"
-            />
+            <img src={src} alt={alt} loading="lazy" />
           </motion.div>
         ))}
       </div>
 
-      {/* Mobile: stack with photo-natural aspect ratios */}
+      {/* Mobile: stack — natural height, full photo visible */}
       <div className="md:hidden flex flex-col gap-3 max-sm:gap-2.5">
-        {photos.map(({ src, alt, position, mobileAspect }, i) => (
+        {photos.map(({ src, alt }, i) => (
           <motion.div
             key={alt}
             variants={scaleIn(i * 0.08)}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className={`photo-frame relative ${mobileAspect}`}
+            className="photo-frame-fluid"
           >
-            <img
-              src={src}
-              alt={alt}
-              className={`w-full h-full object-cover ${position}`}
-              loading="lazy"
-            />
+            <img src={src} alt={alt} loading="lazy" />
           </motion.div>
         ))}
       </div>

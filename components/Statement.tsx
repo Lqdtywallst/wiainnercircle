@@ -27,13 +27,12 @@ export default function Statement() {
       {/* Parallax background */}
       <motion.div
         style={{ y }}
-        className="absolute inset-[-10%] z-0"
+        className="media-parallax absolute inset-0 z-0 flex items-center justify-center bg-[#050505]"
       >
         <img
           src={IMAGES.steeringWheel}
           alt="Lamborghini STO steering wheel con Rolex"
-          className="w-full h-full object-cover object-[center_35%]
-                     max-md:object-[center_40%]"
+          className="max-h-full max-w-full"
           loading="lazy"
         />
       </motion.div>

@@ -18,7 +18,10 @@ export default function Interstitial() {
                  max-sm:min-h-[380px]"
     >
       {/* Parallax video */}
-      <motion.div style={{ y }} className="absolute inset-[-10%] z-0">
+      <motion.div
+        style={{ y }}
+        className="media-parallax absolute inset-0 z-0 flex items-center justify-center bg-[#050505]"
+      >
         <video
           src={VIDEOS.lamboDay.src}
           poster={VIDEOS.lamboDay.poster}
@@ -28,7 +31,7 @@ export default function Interstitial() {
           playsInline
           preload="metadata"
           aria-hidden="true"
-          className="w-full h-full object-cover object-[center_30%]"
+          className="max-h-full max-w-full"
         />
       </motion.div>
 
