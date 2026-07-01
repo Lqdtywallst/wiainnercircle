@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FOUNDER, WHATSAPP, whatsappUrl } from "@/lib/constants";
+import { FOUNDER, MEDIA_FOCUS, WHATSAPP, focusStyle, whatsappUrl } from "@/lib/constants";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 import { track } from "@/lib/tracking";
 
@@ -22,28 +22,14 @@ export default function Founder() {
         variants={scaleIn(0)}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative aspect-[4/5] flex items-end justify-center bg-[#050505]
-                   max-md:aspect-auto max-md:items-center max-md:order-1 max-md:w-full"
+        style={focusStyle(MEDIA_FOCUS.santiago)}
+        className="photo-frame photo-focused relative flex items-center justify-center
+                   aspect-[4/5] max-md:aspect-auto max-md:order-1 max-md:w-full"
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(55% 45% at 50% 55%, rgba(214,255,0,0.10) 0%, rgba(214,255,0,0.04) 35%, rgba(5,5,5,0) 70%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute left-1/2 -translate-x-1/2 bottom-[6%] w-[72%] h-[14px]
-                     rounded-[50%] bg-black/60 blur-2xl"
-        />
         <img
           src={FOUNDER.image}
           alt={`${FOUNDER.name} — ${FOUNDER.role}`}
-          className="relative w-full h-full object-contain object-bottom
-                     max-md:object-center max-md:!h-auto max-md:!max-h-[min(75vh,900px)]
-                     drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+          className="max-md:!h-auto max-md:!max-h-[min(75vh,900px)]"
           loading="lazy"
         />
       </motion.div>

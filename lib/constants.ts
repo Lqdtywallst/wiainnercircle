@@ -138,6 +138,7 @@ export const MEDIA_FOCUS = {
   urus: { default: "50% 48%", md: "50% 50%" },
   lamboSto: { default: "50% 45%" },
   deskDay: { default: "50% 38%" },
+  santiago: { default: "50% 38%", md: "50% 42%", sm: "50% 45%" },
 } as const satisfies Record<string, MediaFocus>;
 
 export function focusStyle(focus: MediaFocus): Record<string, string> {
@@ -323,7 +324,7 @@ export const FOUNDER = {
   name: "Santiago",
   role: "Fundador & Empresario",
   city: "Dubai, EAU",
-  image: "/images/santiago-cutout.png",
+  image: IMAGES.santiago,
   // Authority badges shown right below the heading
   badges: [] as const,
   // Edit / añade tus credenciales reales aquí ↓
